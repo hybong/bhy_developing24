@@ -5,10 +5,10 @@ import com.example.demo.projectiles.UserProjectile;
 public class UserPlane extends FighterPlane {
 
 	private static final String IMAGE_NAME = "userplane.png";
-	private static final double Y_UPPER_BOUND = -40;
-	private static final double Y_LOWER_BOUND = 600.0;
-	private static final double X_UPPER_BOUND = -1000;
-	private static final double X_LOWER_BOUND = 1000.0;
+	private static final double Y_UPPER_BOUND = 70;
+	private static final double Y_LOWER_BOUND = 650;
+	private static final double X_UPPER_BOUND = 0;
+	private static final double X_LOWER_BOUND = 700;
 	private static final double INITIAL_X_POSITION = 5.0;
 	private static final double INITIAL_Y_POSITION = 300.0;
 	private static final int IMAGE_HEIGHT = 40;
