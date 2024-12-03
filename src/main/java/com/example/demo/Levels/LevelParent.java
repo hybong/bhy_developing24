@@ -119,6 +119,11 @@ public abstract class LevelParent extends Observable {
 				if (kc == KeyCode.SPACE) fireProjectile();
 			}
 		});
+		background.setOnMousePressed(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent m) {
+				if (m.getButton() == MouseButton.PRIMARY) fireProjectile();
+			}
+		});
 		background.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
 				KeyCode kc = e.getCode();
