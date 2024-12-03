@@ -4,15 +4,14 @@ import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.Levels.levelView.LevelViewLevelTwo;
 import com.example.demo.models.Boss;
 
-public class LevelThree extends LevelParent {
+public class LevelFour extends LevelParent {
 
-    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background3.jpg";
-    private static final String NEXT_LEVEL = "com.example.demo.Levels.LevelFour";
+    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background4.jpg";
     private static final int PLAYER_INITIAL_HEALTH = 5;
     private final Boss boss2;
     private LevelViewLevelTwo levelView;
 
-    public LevelThree(double screenHeight, double screenWidth) {
+    public LevelFour(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
         boss2 = new Boss();
     }
@@ -28,7 +27,7 @@ public class LevelThree extends LevelParent {
             loseGame();
         }
         else if (boss2.isDestroyed()) {
-            goToNextLevel(NEXT_LEVEL);
+            winGame();
         }
     }
 
