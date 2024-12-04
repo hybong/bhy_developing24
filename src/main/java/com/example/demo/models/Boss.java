@@ -1,12 +1,14 @@
 package com.example.demo.models;
 
 import com.example.demo.projectiles.BossProjectile;
+import com.example.demo.view.ShieldImage;
 
 import java.util.*;
 
-public class Boss extends FighterPlane {
+public class Boss extends FighterPlane{
 
-	private static final String IMAGE_NAME = "bossplane.png";
+	private static final String BOSS_IMAGE = "bossplane.png";
+	private static final String SHIELD_IMAGE = "shield.png";
 	private static final double INITIAL_X_POSITION = 860.0;
 	private static final double INITIAL_Y_POSITION = 400;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
@@ -14,7 +16,7 @@ public class Boss extends FighterPlane {
 	private static final double BOSS_SHIELD_PROBABILITY = .002;
 	private static final int IMAGE_HEIGHT = 80;
 	private static final int VERTICAL_VELOCITY = 8;
-	private static final int HEALTH = 100;
+	private static final int HEALTH = 10;
 	private static final int MOVE_FREQUENCY_PER_CYCLE = 5;
 	private static final int ZERO = 0;
 	private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
@@ -26,15 +28,18 @@ public class Boss extends FighterPlane {
 	private int consecutiveMovesInSameDirection;
 	private int indexOfCurrentMove;
 	private int framesWithShieldActivated;
+	private ShieldImage shield;
+	private int ShieldCount = 0;
 
 	public Boss() {
-		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
+		super(BOSS_IMAGE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
 		movePattern = new ArrayList<>();
 		consecutiveMovesInSameDirection = 0;
 		indexOfCurrentMove = 0;
 		framesWithShieldActivated = 0;
 		isShielded = false;
 		initializeMovePattern();
+		shield = new ShieldImage(500, 500);
 	}
 
 	@Override
@@ -75,9 +80,20 @@ public class Boss extends FighterPlane {
 	}
 
 	private void updateShield() {
-		if (isShielded) framesWithShieldActivated++;
-		else if (shieldShouldBeActivated()) activateShield();	
-		if (shieldExhausted()) deactivateShield();
+		if (isShielded) {
+			framesWithShieldActivated++;
+			shield.showShield();
+			System.out.println("Shield is active");
+		}
+		else if (shieldShouldBeActivated()) {
+			activateShield();
+			System.out.println("Shield activated");
+		}
+		if (shieldExhausted()) {
+			deactivateShield();
+			shield.hideShield();
+			System.out.println("Shield deactivate");
+		}
 	}
 
 	private int getNextMove() {
@@ -103,7 +119,10 @@ public class Boss extends FighterPlane {
 	}
 
 	private boolean shieldShouldBeActivated() {
-		return Math.random() < BOSS_SHIELD_PROBABILITY;
+		if(ShieldCount != 0){
+			return false;
+		}
+		return Math.random() < BOSS_SHIELD_PROBABILITY || this.health <= HEALTH / 2;
 	}
 
 	private boolean shieldExhausted() {
@@ -112,6 +131,7 @@ public class Boss extends FighterPlane {
 
 	private void activateShield() {
 		isShielded = true;
+		ShieldCount++;
 	}
 
 	private void deactivateShield() {
