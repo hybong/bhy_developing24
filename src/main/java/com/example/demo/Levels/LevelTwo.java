@@ -42,7 +42,7 @@ public class LevelTwo extends LevelParent {
 
 	@Override
 	protected LevelView instantiateLevelView() {
-		levelView = new LevelViewLevelTwo(getRoot(), PLAYER_INITIAL_HEALTH, boss.HEALTH);
+		levelView = new LevelViewLevelTwo(getRoot(), PLAYER_INITIAL_HEALTH, Boss.HEALTH);
 		return levelView;
 	}
 
