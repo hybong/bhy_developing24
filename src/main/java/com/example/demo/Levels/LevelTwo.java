@@ -65,7 +65,6 @@ public class LevelTwo extends LevelParent {
 			levelView.hideShield();
 		}
 
-//		isBossShielded = boss.isShielded();
 	}
 
 }

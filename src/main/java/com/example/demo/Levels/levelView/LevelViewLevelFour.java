@@ -1,24 +1,28 @@
 package com.example.demo.Levels.levelView;
 
 import com.example.demo.view.ShieldImage;
+import com.example.demo.models.Boss;
 import javafx.scene.Group;
 
 public class LevelViewLevelFour extends LevelView {
 
-    private static final int SHIELD_X_POSITION = 1150;
-    private static final int SHIELD_Y_POSITION = 500;
     private final Group root;
     private final ShieldImage shieldImage;
 
     public LevelViewLevelFour(Group root, int heartsToDisplay) {
         super(root, heartsToDisplay);
         this.root = root;
-        this.shieldImage = new ShieldImage(SHIELD_X_POSITION, SHIELD_Y_POSITION);
-        addImagesToRoot();
+        this.shieldImage = new ShieldImage();
     }
 
-    private void addImagesToRoot() {
-        root.getChildren().addAll(shieldImage);
+    public void displayShield() {
+        root.getChildren().add(shieldImage);
+    }
+
+    public void updateShieldPosition(Boss boss) {
+        double bossPositionX = boss.getLayoutX() + boss.getTranslateX() - 20;
+        double bossPositionY = boss.getLayoutY() + boss.getTranslateY() + 20;
+        shieldImage.updateShieldPosition(bossPositionX, bossPositionY);
     }
 
     public void showShield() {

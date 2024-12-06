@@ -1,8 +1,9 @@
 package com.example.demo.Levels;
 
 import com.example.demo.Levels.levelView.LevelView;
-import com.example.demo.Levels.levelView.LevelViewLevelTwo;
+import com.example.demo.Levels.levelView.LevelViewLevelThree;
 import com.example.demo.models.secondBoss;
+import javafx.scene.Scene;
 
 public class LevelThree extends LevelParent {
 
@@ -10,7 +11,7 @@ public class LevelThree extends LevelParent {
     private static final String NEXT_LEVEL = "com.example.demo.Levels.LevelFour";
     private static final int PLAYER_INITIAL_HEALTH = 5;
     private final secondBoss boss;
-    private LevelViewLevelTwo levelView;
+    private LevelViewLevelThree levelView;
 
     public LevelThree(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
@@ -41,7 +42,29 @@ public class LevelThree extends LevelParent {
 
     @Override
     protected LevelView instantiateLevelView() {
-        levelView = new LevelViewLevelTwo(getRoot(), PLAYER_INITIAL_HEALTH);
+        levelView = new LevelViewLevelThree(getRoot(), PLAYER_INITIAL_HEALTH);
         return levelView;
     }
+
+    @Override
+    public Scene initializeScene() {
+        Scene scene = super.initializeScene();
+        levelView.displayShield();
+        return scene;
+    }
+
+    public void updateLevelView() {
+        super.updateLevelView();
+        // update shield position
+        levelView.updateShieldPosition(boss);
+//		boolean bossWasShielded = isBossShielded;
+
+        if (boss.isShielded()) {
+            levelView.showShield();
+        } else {
+            levelView.hideShield();
+        }
+
+    }
+
 }
