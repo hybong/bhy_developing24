@@ -3,6 +3,7 @@ package com.example.demo.Levels;
 import com.example.demo.models.Boss;
 import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.Levels.levelView.LevelViewLevelTwo;
+import javafx.scene.Scene;
 
 public class LevelTwo extends LevelParent {
 
@@ -43,6 +44,28 @@ public class LevelTwo extends LevelParent {
 	protected LevelView instantiateLevelView() {
 		levelView = new LevelViewLevelTwo(getRoot(), PLAYER_INITIAL_HEALTH);
 		return levelView;
+	}
+
+	@Override
+	public Scene initializeScene() {
+		Scene scene = super.initializeScene();
+		levelView.displayShield();
+		return scene;
+	}
+
+	public void updateLevelView() {
+		super.updateLevelView();
+		// update shield position
+		levelView.updateShieldPosition(boss);
+//		boolean bossWasShielded = isBossShielded;
+
+		if (boss.isShielded()) {
+			levelView.showShield();
+		} else {
+			levelView.hideShield();
+		}
+
+//		isBossShielded = boss.isShielded();
 	}
 
 }
