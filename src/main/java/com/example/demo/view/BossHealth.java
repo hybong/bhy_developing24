@@ -30,6 +30,6 @@ public class BossHealth extends StackPane {
 
     public void updateHealthPosition(double bossX, double bossY){
         this.setLayoutX(bossX);
-        this.setLayoutY(bossY);
+        this.setLayoutY(bossY + 80);
     }
 }
