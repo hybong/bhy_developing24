@@ -20,9 +20,9 @@ public class LevelViewLevelFour extends LevelView {
     }
 
     public void updateShieldPosition(Boss boss) {
-        double bossPositionX = boss.getLayoutX() + boss.getTranslateX() - 20;
-        double bossPositionY = boss.getLayoutY() + boss.getTranslateY() + 20;
-        shieldImage.updateShieldPosition(bossPositionX, bossPositionY);
+        double bossX = boss.getLayoutX() + boss.getTranslateX();
+        double bossY = boss.getLayoutY() + boss.getTranslateY();
+        shieldImage.updateShieldPosition(bossX, bossY);
     }
 
     public void showShield() {

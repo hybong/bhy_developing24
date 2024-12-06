@@ -21,6 +21,7 @@ public class ShieldImage extends ImageView {
 
 	public void showShield() {
 		this.setVisible(true);
+		this.toFront();
 	}
 	
 	public void hideShield() {
@@ -28,7 +29,7 @@ public class ShieldImage extends ImageView {
 	}
 
 	public void updateShieldPosition(double bossX, double bossY) {
-		this.setLayoutX(bossX); // Adjust as needed
+		this.setLayoutX(bossX - 40); // Adjust as needed
 		this.setLayoutY(bossY); // Adjust as needed
 	}
 
