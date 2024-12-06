@@ -9,11 +9,17 @@ public class BossHealth extends StackPane {
     private final ProgressBar healthBar;
     private final Label healthLabel;
     private final int Health;
+    private static final int BAR_HEIGHT = 370;
+    private static final int BAR_WIDTH = 20;
 
     public BossHealth(int bossHealth) {
         this.Health = bossHealth;
         this.healthBar = new ProgressBar(1.0);
+        this.healthBar.setPrefHeight(BAR_HEIGHT);
+        this.healthBar.setPrefWidth(BAR_WIDTH);
+        this.healthBar.setStyle("-fx-accent: red; -fx-inner-background: white;");
         this.healthLabel = new Label(bossHealth + "/" + bossHealth);
+        this.healthLabel.setStyle("-fx-font-size: 16; -fx-text-fill: yellow;");
         this.getChildren().addAll(healthBar,healthLabel);
     }
 
