@@ -7,8 +7,7 @@ import javafx.scene.Scene;
 
 public class LevelFour extends LevelParent {
 
-    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background2.jpg";
-    private static final String NEXT_LEVEL = "com.example.demo.Levels.LevelThree";
+    private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background4.jpg";
     private static final int PLAYER_INITIAL_HEALTH = 5;
     private final Boss boss;
     private LevelViewLevelFour levelView;
@@ -29,7 +28,7 @@ public class LevelFour extends LevelParent {
             loseGame();
         }
         else if (boss.isDestroyed()) {
-            goToNextLevel(NEXT_LEVEL);
+            winGame();
         }
     }
 
