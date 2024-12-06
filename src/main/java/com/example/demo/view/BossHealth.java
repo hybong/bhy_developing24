@@ -1,6 +1,5 @@
 package com.example.demo.view;
 
-import com.example.demo.models.Boss;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
@@ -9,8 +8,8 @@ public class BossHealth extends StackPane {
     private final ProgressBar healthBar;
     private final Label healthLabel;
     private final int Health;
-    private static final int BAR_HEIGHT = 370;
-    private static final int BAR_WIDTH = 20;
+    private static final int BAR_HEIGHT = 20;
+    private static final int BAR_WIDTH = 370;
 
     public BossHealth(int bossHealth) {
         this.Health = bossHealth;
