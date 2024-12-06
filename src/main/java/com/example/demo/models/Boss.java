@@ -1,14 +1,12 @@
 package com.example.demo.models;
 
 import com.example.demo.projectiles.BossProjectile;
-import com.example.demo.view.ShieldImage;
 
 import java.util.*;
 
 public class Boss extends FighterPlane{
 
 	private static final String BOSS_IMAGE = "bossplane.png";
-	private static final String SHIELD_IMAGE = "shield.png";
 	private static final double INITIAL_X_POSITION = 860.0;
 	private static final double INITIAL_Y_POSITION = 400;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
@@ -16,7 +14,7 @@ public class Boss extends FighterPlane{
 	private static final double BOSS_SHIELD_PROBABILITY = .002;
 	private static final int IMAGE_HEIGHT = 80;
 	private static final int VERTICAL_VELOCITY = 8;
-	private static final int HEALTH = 10;
+	public static final int HEALTH = 10;
 	private static final int MOVE_FREQUENCY_PER_CYCLE = 5;
 	private static final int ZERO = 0;
 	private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
