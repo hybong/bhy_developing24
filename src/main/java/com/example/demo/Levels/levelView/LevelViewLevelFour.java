@@ -70,4 +70,12 @@ public class LevelViewLevelFour extends LevelView {
         root.getChildren().addAll(bossOneHealth, bossTwoHealth);
     }
 
+    public void hideHealthOne() {
+        bossOneHealth.hideHealth();
+    }
+
+    public void hideHealthTwo() {
+        bossTwoHealth.hideHealth();
+    }
+
 }

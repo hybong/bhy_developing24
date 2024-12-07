@@ -32,4 +32,9 @@ public class BossHealth extends StackPane {
         this.setLayoutX(bossX);
         this.setLayoutY(bossY + 80);
     }
+
+    public void hideHealth(){
+        this.setVisible(false);
+    }
+
 }

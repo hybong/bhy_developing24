@@ -68,6 +68,9 @@ public class LevelFour extends LevelParent {
         if (bossTwo.isShielded()) levelView.showShieldTwo();
         else levelView.hideShieldTwo();
 
+        if (bossOne.isDestroyed()) levelView.hideHealthOne();
+        if (bossTwo.isDestroyed()) levelView.hideHealthTwo();
+
         levelView.updateHealthPosition(bossOne, bossTwo);
         levelView.updateBossHealth(bossOne.getHealth(), bossTwo.getHealth());
 
