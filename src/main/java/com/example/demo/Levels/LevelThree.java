@@ -42,7 +42,7 @@ public class LevelThree extends LevelParent {
 
     @Override
     protected LevelView instantiateLevelView() {
-        levelView = new LevelViewLevelThree(getRoot(), PLAYER_INITIAL_HEALTH);
+        levelView = new LevelViewLevelThree(getRoot(), PLAYER_INITIAL_HEALTH, secondBoss.HEALTH);
         return levelView;
     }
 
@@ -50,6 +50,7 @@ public class LevelThree extends LevelParent {
     public Scene initializeScene() {
         Scene scene = super.initializeScene();
         levelView.displayShield();
+        levelView.displayBossHealth();
         return scene;
     }
 
@@ -64,6 +65,9 @@ public class LevelThree extends LevelParent {
         } else {
             levelView.hideShield();
         }
+
+        levelView.updateHealthPosition(boss);
+        levelView.updateBossHealth(boss.getHealth());
 
     }
 

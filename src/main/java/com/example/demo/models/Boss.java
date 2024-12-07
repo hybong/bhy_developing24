@@ -10,23 +10,23 @@ public class Boss extends FighterPlane{
 	private static final double INITIAL_X_POSITION = 860.0;
 	private static final double INITIAL_Y_POSITION = 400;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
-	private static final double BOSS_FIRE_RATE = .04;
+	public static double BOSS_FIRE_RATE = .04;
 	private static final double BOSS_SHIELD_PROBABILITY = .002;
 	private static final int IMAGE_HEIGHT = 80;
 	private static final int VERTICAL_VELOCITY = 8;
-	public static final int HEALTH = 10;
+	public static final int HEALTH = 20;
 	private static final int MOVE_FREQUENCY_PER_CYCLE = 5;
 	private static final int ZERO = 0;
 	private static final int MAX_FRAMES_WITH_SAME_MOVE = 10;
 	private static final int Y_POSITION_UPPER_BOUND = 10;
 	private static final int Y_POSITION_LOWER_BOUND = 600;
-	private static final int MAX_FRAMES_WITH_SHIELD = 200;
+	private static final int MAX_FRAMES_WITH_SHIELD = 50;
 	private final List<Integer> movePattern;
 	private boolean isShielded;
 	private int consecutiveMovesInSameDirection;
 	private int indexOfCurrentMove;
 	private int framesWithShieldActivated;
-	private int ShieldCount = 0;
+	protected static int ShieldCount = 0;
 
 	public Boss() {
 		super(BOSS_IMAGE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
@@ -103,7 +103,7 @@ public class Boss extends FighterPlane{
 		return getLayoutY() + getTranslateY() + PROJECTILE_Y_POSITION_OFFSET;
 	}
 
-	private boolean shieldShouldBeActivated() {
+	protected boolean shieldShouldBeActivated() {
 		if(ShieldCount != 0){
 			return false;
 		}
