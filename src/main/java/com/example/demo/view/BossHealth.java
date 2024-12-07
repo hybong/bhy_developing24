@@ -16,9 +16,9 @@ public class BossHealth extends StackPane {
         this.healthBar = new ProgressBar(1.0);
         this.healthBar.setPrefHeight(BAR_HEIGHT);
         this.healthBar.setPrefWidth(BAR_WIDTH);
-        this.healthBar.setStyle("-fx-accent: red; -fx-inner-background: white;");
+        this.healthBar.setStyle("-fx-accent: red;");
         this.healthLabel = new Label(bossHealth + "/" + bossHealth);
-        this.healthLabel.setStyle("-fx-font-size: 16; -fx-text-fill: yellow;");
+        this.healthLabel.setStyle("-fx-font-size: 15; -fx-text-fill: black;");
         this.getChildren().addAll(healthBar,healthLabel);
     }
 
