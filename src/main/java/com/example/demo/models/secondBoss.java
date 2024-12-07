@@ -1,6 +1,5 @@
 package com.example.demo.models;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 public class secondBoss extends Boss {
@@ -30,7 +29,6 @@ public class secondBoss extends Boss {
         if (this.health <= HEALTH_DANGER) {
             BOSS_FIRE_RATE = DANGER_FIRE_RATE;
             MOVE_FREQUENCY_PER_CYCLE = DANGER_MOVE_FREQUENCY;
-            VERTICAL_VELOCITY = DANGER_VELOCITY;
             initializeMovePattern();
             isInDanger = true;
         }
@@ -40,8 +38,8 @@ public class secondBoss extends Boss {
     @Override
     protected void initializeMovePattern() {
         for (int i = 0; i < MOVE_FREQUENCY_PER_CYCLE; i++) {
-            movePattern.add(VERTICAL_VELOCITY);
-            movePattern.add(-VERTICAL_VELOCITY);
+            movePattern.add(DANGER_VELOCITY);
+            movePattern.add(-DANGER_VELOCITY);
             movePattern.add(0);
         }
         Collections.shuffle(movePattern);
