@@ -121,7 +121,7 @@ public abstract class LevelParent extends Observable {
 		});
 		background.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent m) {
-				if (m.getButton() == MouseButton.PRIMARY) fireProjectile();
+				if (m.getButton() == MouseButton.PRIMARY || m.getButton() == MouseButton.SECONDARY) fireProjectile();
 			}
 		});
 		background.setOnKeyReleased(new EventHandler<KeyEvent>() {
