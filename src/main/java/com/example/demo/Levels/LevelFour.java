@@ -13,11 +13,14 @@ public class LevelFour extends LevelParent {
     private final Boss bossOne;
     private final secondBoss bossTwo;
     private LevelViewLevelFour levelView;
+    private final int FRAMES_TO_REVIVE = 100;
+    private static int BOSS_DEAD_FRAME;
 
     public LevelFour(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
         bossOne = new Boss();
         bossTwo = new secondBoss();
+        BOSS_DEAD_FRAME = 0;
     }
 
     @Override
@@ -74,6 +77,27 @@ public class LevelFour extends LevelParent {
         levelView.updateHealthPosition(bossOne, bossTwo);
         levelView.updateBossHealth(bossOne.getHealth(), bossTwo.getHealth());
 
+        updateRevive();
+
+    }
+
+    private void updateRevive() {
+        if (bossOne.isDestroyed() || bossTwo.isDestroyed()){
+            BOSS_DEAD_FRAME++;
+            if (BOSS_DEAD_FRAME == FRAMES_TO_REVIVE) {
+                if (bossOne.isDestroyed() && !bossTwo.isDestroyed()) {
+                    bossOne.revive();
+                    addEnemyUnit(bossOne);
+                    levelView.showHealthOne();
+                }
+                if (bossTwo.isDestroyed() && !bossOne.isDestroyed()) {
+                    bossTwo.revive();
+                    addEnemyUnit(bossTwo);
+                    levelView.showHealthTwo();
+                }
+                BOSS_DEAD_FRAME = 0;
+            }
+        }
     }
 
 }

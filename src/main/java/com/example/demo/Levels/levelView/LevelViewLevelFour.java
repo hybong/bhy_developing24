@@ -78,4 +78,12 @@ public class LevelViewLevelFour extends LevelView {
         bossTwoHealth.hideHealth();
     }
 
+    public void showHealthOne() {
+        bossOneHealth.showHealth();
+    }
+
+    public void showHealthTwo() {
+        bossTwoHealth.showHealth();
+    }
+
 }

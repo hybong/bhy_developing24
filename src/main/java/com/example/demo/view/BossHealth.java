@@ -37,4 +37,8 @@ public class BossHealth extends StackPane {
         this.setVisible(false);
     }
 
+    public void showHealth(){
+        this.setVisible(true);
+    }
+
 }

@@ -128,4 +128,11 @@ public class Boss extends FighterPlane{
 		return isShielded;
 	}
 
+	public void revive() {
+		if(this.isDestroyed()){
+			this.setDestroyed(false);
+			this.setHealth(HEALTH);
+		}
+	}
+
 }
