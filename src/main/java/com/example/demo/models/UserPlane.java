@@ -12,8 +12,8 @@ public class UserPlane extends FighterPlane {
 	private static final double INITIAL_X_POSITION = 5.0;
 	private static final double INITIAL_Y_POSITION = 300.0;
 	private static final int IMAGE_HEIGHT = 40;
-	private static final int VERTICAL_VELOCITY = 8;
-	private static final int HORIZONTAL_VELOCITY = 8;
+	private static int VERTICAL_VELOCITY = 8;
+	private static int HORIZONTAL_VELOCITY = 8;
 	private static final int PROJECTILE_X_POSITION = 140;
 	private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
 	private int verticalVelocityMultiplier;
@@ -83,8 +83,19 @@ public class UserPlane extends FighterPlane {
 	public void stopVertically() {
 		verticalVelocityMultiplier = 0;
 	}
+
 	public void stopHorizontally() {
 		horizontalVelocityMultiplier = 0;
+	}
+
+	public void moveFaster() {
+		HORIZONTAL_VELOCITY += 5;
+		VERTICAL_VELOCITY += 5;
+	}
+
+	public void moveSlower() {
+		HORIZONTAL_VELOCITY -= 5;
+		VERTICAL_VELOCITY -= 5;
 	}
 
 	public int getNumberOfKills() {

@@ -116,6 +116,7 @@ public abstract class LevelParent extends Observable {
 				if (kc == KeyCode.DOWN || kc==KeyCode.S) user.moveDown();
 				if (kc == KeyCode.LEFT || kc==KeyCode.A) user.moveLeft();
 				if (kc == KeyCode.RIGHT || kc==KeyCode.D) user.moveRight();
+				if (kc == KeyCode.SHIFT) user.moveFaster();
 				if (kc == KeyCode.SPACE) fireProjectile();
 			}
 		});
@@ -129,6 +130,7 @@ public abstract class LevelParent extends Observable {
 				KeyCode kc = e.getCode();
 				if (kc == KeyCode.UP || kc == KeyCode.DOWN || kc == KeyCode.W || kc == KeyCode.S) user.stopVertically();
 				if (kc == KeyCode.LEFT || kc == KeyCode.RIGHT || kc == KeyCode.A || kc == KeyCode.D) user.stopHorizontally();
+				if (kc == KeyCode.SHIFT) user.moveSlower();
 			}
 		});
 		root.getChildren().add(background);
