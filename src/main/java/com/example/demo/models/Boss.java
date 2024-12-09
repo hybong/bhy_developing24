@@ -10,7 +10,7 @@ public class Boss extends FighterPlane{
 	private static final double INITIAL_X_POSITION = 860.0;
 	private static final double INITIAL_Y_POSITION = 400;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
-	public static double BOSS_FIRE_RATE = .04;
+	protected double BOSS_FIRE_RATE = .001;
 	private static final double BOSS_SHIELD_PROBABILITY = .002;
 	private static final int IMAGE_HEIGHT = 80;
 	protected static int VERTICAL_VELOCITY = 8;
@@ -26,7 +26,7 @@ public class Boss extends FighterPlane{
 	protected int consecutiveMovesInSameDirection;
 	protected int indexOfCurrentMove;
 	private int framesWithShieldActivated;
-	protected static int ShieldCount = 0;
+	public int ShieldCount = 0;
 
 	public Boss() {
 		super(BOSS_IMAGE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
@@ -75,13 +75,13 @@ public class Boss extends FighterPlane{
 		Collections.shuffle(movePattern);
 	}
 
-	private void updateShield() {
+	protected void updateShield() {
 		if (isShielded) framesWithShieldActivated++;
 		else if (shieldShouldBeActivated()) activateShield();
 		if (shieldExhausted()) deactivateShield();
 	}
 
-	private int getNextMove() {
+	protected int getNextMove() {
 		int currentMove = movePattern.get(indexOfCurrentMove);
 		consecutiveMovesInSameDirection++;
 		if (consecutiveMovesInSameDirection == MAX_FRAMES_WITH_SAME_MOVE) {
@@ -95,7 +95,7 @@ public class Boss extends FighterPlane{
 		return currentMove;
 	}
 
-	private boolean bossFiresInCurrentFrame() {
+	protected boolean bossFiresInCurrentFrame() {
 		return Math.random() < BOSS_FIRE_RATE;
 	}
 
@@ -114,9 +114,9 @@ public class Boss extends FighterPlane{
 		return framesWithShieldActivated == MAX_FRAMES_WITH_SHIELD;
 	}
 
-	private void activateShield() {
+	protected void activateShield() {
 		isShielded = true;
-		ShieldCount++;
+		this.ShieldCount++;
 	}
 
 	private void deactivateShield() {
@@ -132,6 +132,7 @@ public class Boss extends FighterPlane{
 		if(this.isDestroyed()){
 			this.setDestroyed(false);
 			this.setHealth(HEALTH);
+			this.ShieldCount = 0;
 		}
 	}
 
