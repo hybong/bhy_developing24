@@ -7,6 +7,8 @@ import com.example.demo.models.ActiveActorDestructible;
 import com.example.demo.models.FighterPlane;
 import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.models.UserPlane;
+import com.example.demo.view.PauseButton;
+import com.example.demo.view.PlayButton;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -28,6 +30,8 @@ public abstract class LevelParent extends Observable {
 	private final UserPlane user;
 	private final Scene scene;
 	private final ImageView background;
+	private final PauseButton pauseButton;
+	private final PlayButton playButton;
 
 	private final List<ActiveActorDestructible> friendlyUnits;
 	private final List<ActiveActorDestructible> enemyUnits;
@@ -35,6 +39,7 @@ public abstract class LevelParent extends Observable {
 	private final List<ActiveActorDestructible> enemyProjectiles;
 	
 	private int currentNumberOfEnemies;
+	private boolean isPaused;
 	private LevelView levelView;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
@@ -53,8 +58,25 @@ public abstract class LevelParent extends Observable {
 		this.enemyMaximumYPosition = screenHeight - SCREEN_HEIGHT_ADJUSTMENT;
 		this.levelView = instantiateLevelView();
 		this.currentNumberOfEnemies = 0;
+		this.pauseButton = new PauseButton(this::pauseGame);
+		this.playButton = new PlayButton(this::resumeGame);
+		this.isPaused = false;
 		initializeTimeline();
 		friendlyUnits.add(user);
+	}
+
+	private void pauseGame() {
+		timeline.pause();
+		isPaused = true;
+		pauseButton.hidePauseButton();
+		playButton.showPlayButton();
+	}
+
+	private void resumeGame() {
+		timeline.play();
+		isPaused = false;
+		playButton.hidePlayButton();
+		pauseButton.showPauseButton();
 	}
 
 	protected abstract void initializeFriendlyUnits();
@@ -69,6 +91,8 @@ public abstract class LevelParent extends Observable {
 		initializeBackground();
 		initializeFriendlyUnits();
 		levelView.showHeartDisplay();
+		root.getChildren().addAll(pauseButton, playButton);
+		playButton.hidePlayButton();
 		return scene;
 	}
 
@@ -112,25 +136,34 @@ public abstract class LevelParent extends Observable {
 		background.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
 				KeyCode kc = e.getCode();
-				if (kc == KeyCode.UP || kc==KeyCode.W) user.moveUp();
-				if (kc == KeyCode.DOWN || kc==KeyCode.S) user.moveDown();
-				if (kc == KeyCode.LEFT || kc==KeyCode.A) user.moveLeft();
-				if (kc == KeyCode.RIGHT || kc==KeyCode.D) user.moveRight();
-				if (kc == KeyCode.SHIFT) user.moveFaster();
-				if (kc == KeyCode.SPACE) fireProjectile();
+				if(!isPaused) {
+					if (kc == KeyCode.UP || kc == KeyCode.W) user.moveUp();
+					if (kc == KeyCode.DOWN || kc == KeyCode.S) user.moveDown();
+					if (kc == KeyCode.LEFT || kc == KeyCode.A) user.moveLeft();
+					if (kc == KeyCode.RIGHT || kc == KeyCode.D) user.moveRight();
+					if (kc == KeyCode.SHIFT) user.moveFaster();
+					if (kc == KeyCode.SPACE) fireProjectile();
+				}
 			}
 		});
 		background.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent m) {
-				if (m.getButton() == MouseButton.PRIMARY || m.getButton() == MouseButton.SECONDARY) fireProjectile();
+				if(!isPaused) {
+					if (m.getButton() == MouseButton.PRIMARY || m.getButton() == MouseButton.SECONDARY)
+						fireProjectile();
+				}
 			}
 		});
 		background.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
 				KeyCode kc = e.getCode();
-				if (kc == KeyCode.UP || kc == KeyCode.DOWN || kc == KeyCode.W || kc == KeyCode.S) user.stopVertically();
-				if (kc == KeyCode.LEFT || kc == KeyCode.RIGHT || kc == KeyCode.A || kc == KeyCode.D) user.stopHorizontally();
-				if (kc == KeyCode.SHIFT) user.moveSlower();
+				if(!isPaused) {
+					if (kc == KeyCode.UP || kc == KeyCode.DOWN || kc == KeyCode.W || kc == KeyCode.S)
+						user.stopVertically();
+					if (kc == KeyCode.LEFT || kc == KeyCode.RIGHT || kc == KeyCode.A || kc == KeyCode.D)
+						user.stopHorizontally();
+					if (kc == KeyCode.SHIFT) user.moveSlower();
+				}
 			}
 		});
 		root.getChildren().add(background);
