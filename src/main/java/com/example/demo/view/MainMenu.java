@@ -7,6 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -18,8 +20,10 @@ import javafx.scene.control.Label;
 public class MainMenu {
 
     private final Stage stage;
-    private final String BACKGROUND_IMAGE = "/com/example/demo/images/background1.jpg";
+    private final String BACKGROUND_IMAGE = "/com/example/demo/images/mainmenuBackground.jpg";
+    private final String BACKGROUND_MUSIC = "/com/example/demo/media/backgroundMusic/MainMenuMusic.mp3";
     private Controller myController;
+    private MediaPlayer mediaPlayer;
 
     public MainMenu(Stage stage) {
         this.stage = stage;
@@ -37,7 +41,7 @@ public class MainMenu {
 
         // Style the start button
         startButton.setFont(Font.font("Arial", 18)); // Set font and size for start button
-        startButton.setTextFill(Color.web("#000000")); // White text color for the button
+        startButton.setTextFill(Color.web("#FFFFFF")); // White text color for the button
         startButton.setStyle("-fx-background-color: #4CAF50; -fx-font-weight: bold;"); // Green background and bold font
         startButton.setMinWidth(200); // Set a minimum width
         startButton.setMinHeight(50); // Set a minimum height
@@ -45,7 +49,7 @@ public class MainMenu {
 
         // Style the exit button
         exitButton.setFont(Font.font("Arial", 18)); // Set font and size for exit button
-        exitButton.setTextFill(Color.web("#000000")); // White text color for the button
+        exitButton.setTextFill(Color.web("#FFFFFF")); // White text color for the button
         exitButton.setStyle("-fx-background-color: #F44336; -fx-font-weight: bold;"); // Red background and bold font
         exitButton.setMinWidth(200); // Set a minimum width
         exitButton.setMinHeight(50); // Set a minimum height
@@ -83,11 +87,31 @@ public class MainMenu {
         stage.setScene(scene);
         stage.setTitle(Main.TITLE);
         stage.show();
+
+        playBackgroundMusic();
     }
 
     private void startPlaying() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         myController = new Controller(stage);
         myController.launchGame();
+    }
+
+    private void playBackgroundMusic() {
+        // Make sure the music file is in the correct path, here it's located in the "resources" folder
+        String musicPath = getClass().getResource(BACKGROUND_MUSIC).toExternalForm();
+        Media music = new Media(musicPath);
+        mediaPlayer = new MediaPlayer(music);
+
+        // Loop the music
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.setVolume(1);  // Adjust volume (0.0 is silent, 1.0 is full volume)
+        mediaPlayer.play();
+    }
+
+    private void stopMusic() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
     }
 
 }
