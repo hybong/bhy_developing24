@@ -1,8 +1,10 @@
 package com.example.demo.Levels;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.example.demo.controller.Main;
 import com.example.demo.media.BackgroundMusic;
 import com.example.demo.models.ActiveActorDestructible;
 import com.example.demo.models.FighterPlane;
@@ -10,12 +12,15 @@ import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.models.UserPlane;
 import com.example.demo.view.PauseButton;
 import com.example.demo.view.PlayButton;
+import com.example.demo.view.PauseMenu;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.*;
 import javafx.scene.input.*;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public abstract class LevelParent extends Observable {
@@ -33,6 +38,8 @@ public abstract class LevelParent extends Observable {
 	private final ImageView background;
 	private final PauseButton pauseButton;
 	private final PlayButton playButton;
+	private final PauseMenu pauseMenu;
+	private final Main main = new Main();
 
 	private final List<ActiveActorDestructible> friendlyUnits;
 	private final List<ActiveActorDestructible> enemyUnits;
@@ -63,24 +70,25 @@ public abstract class LevelParent extends Observable {
 		this.pauseButton = new PauseButton(this::pauseGame);
 		this.playButton = new PlayButton(this::resumeGame);
 		this.isPaused = false;
+		pauseMenu = new PauseMenu(this);
 		initializeTimeline();
 		friendlyUnits.add(user);
 	}
 
 	private void pauseGame() {
 		timeline.pause();
-		backgroundMusic.pauseMusic();
 		isPaused = true;
 		pauseButton.hidePauseButton();
 		playButton.showPlayButton();
+		pauseMenu.setVisible(true);
 	}
 
-	private void resumeGame() {
+	public void resumeGame() {
 		timeline.play();
-		backgroundMusic.resumeMusic();
 		isPaused = false;
 		playButton.hidePlayButton();
 		pauseButton.showPauseButton();
+		pauseMenu.setVisible(false);
 	}
 
 	protected void hidePausePlayButton() {
@@ -100,8 +108,7 @@ public abstract class LevelParent extends Observable {
 		initializeBackground();
 		initializeFriendlyUnits();
 		levelView.showHeartDisplay();
-		root.getChildren().addAll(pauseButton, playButton);
-		playButton.hidePlayButton();
+		root.getChildren().addAll(pauseButton, playButton, pauseMenu);
 		return scene;
 	}
 
@@ -314,6 +321,28 @@ public abstract class LevelParent extends Observable {
 	protected void addBackgroundMusic(String backgroundMusic) {
 		this.backgroundMusic = new BackgroundMusic(backgroundMusic);
 		this.backgroundMusic.playMusic();
+	}
+
+	public void toggleBackgroundMusic() {
+		if(backgroundMusic.isPlaying()) backgroundMusic.pauseMusic();
+		else backgroundMusic.resumeMusic();
+	}
+
+	public boolean backgroundMusicPlaying() {
+		return backgroundMusic.isPlaying();
+	}
+
+	public void goToMainMenu() {
+		try {
+			timeline.stop();
+			Stage stage = (Stage) root.getScene().getWindow();
+			main.start(stage);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException |
+				IllegalAccessException | IllegalArgumentException | InvocationTargetException e){
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText(e.getClass().toString());
+			alert.show();
+		}
 	}
 
 }

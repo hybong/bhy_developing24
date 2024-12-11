@@ -19,6 +19,7 @@ public class PlayButton extends ImageView {
         this.setLayoutY(PLAY_BUTTON_Y_POSITION);
         this.toFront();
         this.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> resume.run());
+        this.setVisible(false);
     }
 
     public void showPlayButton() {
