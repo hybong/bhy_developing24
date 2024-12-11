@@ -3,6 +3,7 @@ package com.example.demo.view;
 import com.example.demo.controller.Main;
 import com.example.demo.controller.Controller;
 import com.example.demo.media.BackgroundMusic;
+import com.example.demo.media.SoundEffect;
 
 import javafx.scene.control.Alert;
 import java.lang.reflect.InvocationTargetException;
@@ -22,8 +23,11 @@ public class MainMenu {
     private final Stage stage;
     private final String BACKGROUND_IMAGE = "/com/example/demo/images/mainmenuBackground.jpg";
     private final String BACKGROUND_MUSIC = "/com/example/demo/media/backgroundMusic/MainMenuMusic.mp3";
+    private final String BUTTON_SOUND = "/com/example/demo/media/soundEffects/click.mp3";
     private Controller myController;
     private BackgroundMusic backgroundMusic;
+    private SoundEffect buttonSound;
+    private final double BUTTON_SOUND_VOLUME = 1;
 
     public MainMenu(Stage stage) {
         this.stage = stage;
@@ -55,8 +59,11 @@ public class MainMenu {
         exitButton.setMinHeight(50); // Set a minimum height
         exitButton.setEffect(new javafx.scene.effect.DropShadow(10, Color.BLACK)); // Optional: Add a shadow effect
 
+        buttonSound = new SoundEffect(BUTTON_SOUND);
+
         startButton.setOnAction(event -> {
             try {
+                buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
                 startPlaying();
             } catch (ClassNotFoundException | InvocationTargetException |
                      NoSuchMethodException | InstantiationException | IllegalAccessException e) {
@@ -66,6 +73,7 @@ public class MainMenu {
             }
         });
         exitButton.setOnAction(event -> {
+            buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
             stage.close();
         });
 
