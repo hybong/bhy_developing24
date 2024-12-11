@@ -47,7 +47,7 @@ public abstract class LevelParent extends Observable {
 	private boolean isPaused;
 	private LevelView levelView;
 	private BackgroundMusic backgroundMusic;
-	private SoundEffect userDestroyedSound;
+	private final SoundEffect userDestroyedSound;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
 		this.root = new Group();
