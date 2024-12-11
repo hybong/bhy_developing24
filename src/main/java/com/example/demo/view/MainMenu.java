@@ -94,6 +94,7 @@ public class MainMenu {
     }
 
     private void startPlaying() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        backgroundMusic.stopMusic();
         myController = new Controller(stage);
         myController.launchGame();
     }
