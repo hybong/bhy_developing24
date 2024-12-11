@@ -1,9 +1,11 @@
 package com.example.demo.Levels.levelView;
 
+import com.example.demo.Levels.LevelFour;
 import com.example.demo.models.secondBoss;
 import com.example.demo.view.BossHealth;
 import com.example.demo.view.ShieldImage;
 import com.example.demo.models.Boss;
+import com.example.demo.view.Timer;
 import javafx.scene.Group;
 
 public class LevelViewLevelFour extends LevelView {
@@ -13,6 +15,7 @@ public class LevelViewLevelFour extends LevelView {
     private final ShieldImage shieldImageTwo;
     private final BossHealth bossOneHealth;
     private final BossHealth bossTwoHealth;
+    private final Timer timer;
 
     public LevelViewLevelFour(Group root, int heartsToDisplay, int bossOneHealth, int bossTwoHealth) {
         super(root, heartsToDisplay);
@@ -21,6 +24,7 @@ public class LevelViewLevelFour extends LevelView {
         this.shieldImageTwo = new ShieldImage();
         this.bossOneHealth = new BossHealth(bossOneHealth);
         this.bossTwoHealth = new BossHealth(bossTwoHealth);
+        this.timer = new Timer(LevelFour.FRAMES_TO_REVIVE);
     }
 
     public void displayShield() {
@@ -84,6 +88,14 @@ public class LevelViewLevelFour extends LevelView {
 
     public void showHealthTwo() {
         bossTwoHealth.showHealth();
+    }
+
+    public void displayTimer() {
+        root.getChildren().add(timer);
+    }
+
+    public Timer accessTimer() {
+        return timer;
     }
 
 }

@@ -5,6 +5,7 @@ import com.example.demo.Levels.levelView.LevelViewLevelFour;
 import com.example.demo.media.BackgroundMusic;
 import com.example.demo.models.Boss;
 import com.example.demo.models.secondBoss;
+import com.example.demo.view.Timer;
 import javafx.scene.Scene;
 
 public class LevelFour extends LevelParent {
@@ -16,15 +17,17 @@ public class LevelFour extends LevelParent {
     private final secondBoss bossTwo;
     private LevelViewLevelFour levelView;
     private BackgroundMusic backgroundMusic;
-    private final int FRAMES_TO_REVIVE = 100;
+    public static final int FRAMES_TO_REVIVE = 10;
     private static int BOSS_DEAD_FRAME;
+    private Timer timer;
 
     public LevelFour(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
         addBackgroundMusic(BACKGROUND_MUSIC);
         bossOne = new Boss();
         bossTwo = new secondBoss();
-        BOSS_DEAD_FRAME = 0;
+//        BOSS_DEAD_FRAME = 0;
+        this.timer = levelView.accessTimer();
     }
 
     @Override
@@ -39,6 +42,7 @@ public class LevelFour extends LevelParent {
         }
         else if (bossOne.isDestroyed() && bossTwo.isDestroyed()) {
             hidePausePlayButton();
+            timer.hideTimer();
             winGame();
         }
     }
@@ -62,6 +66,7 @@ public class LevelFour extends LevelParent {
         Scene scene = super.initializeScene();
         levelView.displayShield();
         levelView.displayBossHealth();
+        levelView.displayTimer();
         return scene;
     }
 
@@ -86,10 +91,30 @@ public class LevelFour extends LevelParent {
 
     }
 
+//    private void updateRevive() {
+//        if (bossOne.isDestroyed() || bossTwo.isDestroyed()){
+//            BOSS_DEAD_FRAME++;
+//            if (BOSS_DEAD_FRAME == FRAMES_TO_REVIVE) {
+//                if (bossOne.isDestroyed() && !bossTwo.isDestroyed()) {
+//                    bossOne.revive();
+//                    addEnemyUnit(bossOne);
+//                    levelView.showHealthOne();
+//                }
+//                if (bossTwo.isDestroyed() && !bossOne.isDestroyed()) {
+//                    bossTwo.revive();
+//                    addEnemyUnit(bossTwo);
+//                    levelView.showHealthTwo();
+//                }
+//                BOSS_DEAD_FRAME = 0;
+//            }
+//        }
+//    }
+
     private void updateRevive() {
         if (bossOne.isDestroyed() || bossTwo.isDestroyed()){
-            BOSS_DEAD_FRAME++;
-            if (BOSS_DEAD_FRAME == FRAMES_TO_REVIVE) {
+            timer.showTimer();
+            timer.startTimer();
+            if (timer.timeFinished()) {
                 if (bossOne.isDestroyed() && !bossTwo.isDestroyed()) {
                     bossOne.revive();
                     addEnemyUnit(bossOne);
@@ -100,7 +125,8 @@ public class LevelFour extends LevelParent {
                     addEnemyUnit(bossTwo);
                     levelView.showHealthTwo();
                 }
-                BOSS_DEAD_FRAME = 0;
+                timer.hideTimer();
+                timer.reset(FRAMES_TO_REVIVE);
             }
         }
     }
