@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import com.example.demo.media.BackgroundMusic;
-import com.example.demo.media.SoundEffect;
 import com.example.demo.models.ActiveActorDestructible;
 import com.example.demo.models.FighterPlane;
 import com.example.demo.Levels.levelView.LevelView;
@@ -47,7 +46,6 @@ public abstract class LevelParent extends Observable {
 	private boolean isPaused;
 	private LevelView levelView;
 	private BackgroundMusic backgroundMusic;
-	private final SoundEffect userDestroyedSound;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
 		this.root = new Group();
@@ -68,7 +66,6 @@ public abstract class LevelParent extends Observable {
 		this.pauseButton = new PauseButton(this::pauseGame);
 		this.playButton = new PlayButton(this::resumeGame);
 		this.isPaused = false;
-		userDestroyedSound = new SoundEffect(USER_DESTROY_SOUND_PATH);
 		initializeTimeline();
 		friendlyUnits.add(user);
 	}
@@ -137,7 +134,6 @@ public abstract class LevelParent extends Observable {
 		updateKillCount();
 		updateLevelView();
 		checkIfGameOver();
-		updateUserDestroySound();
 	}
 
 	private void initializeTimeline() {
@@ -321,12 +317,6 @@ public abstract class LevelParent extends Observable {
 	protected void addBackgroundMusic(String backgroundMusic) {
 		this.backgroundMusic = new BackgroundMusic(backgroundMusic);
 		this.backgroundMusic.playMusic();
-	}
-
-	private void updateUserDestroySound() {
-		if(user.isDestroyed()){
-			userDestroyedSound.playSoundEffect(USER_DESTROY_SOUND_VOLUME);
-		}
 	}
 
 }
