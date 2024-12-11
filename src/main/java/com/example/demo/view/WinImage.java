@@ -15,6 +15,7 @@ public class WinImage extends ImageView {
 		this.setPreserveRatio(true);
 		this.setLayoutX(xPosition);
 		this.setLayoutY(yPosition);
+		this.toFront();
 	}
 	
 	public void showWinImage() {

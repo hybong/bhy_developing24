@@ -15,6 +15,7 @@ public class GameOverImage extends ImageView {
 		setLayoutY(yPosition);
 		setFitHeight(HEIGHT);
 		setPreserveRatio(true);
+		toFront();
 	}
 
 }
