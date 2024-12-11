@@ -26,7 +26,6 @@ public class LevelFour extends LevelParent {
         addBackgroundMusic(BACKGROUND_MUSIC);
         bossOne = new Boss();
         bossTwo = new secondBoss();
-//        BOSS_DEAD_FRAME = 0;
         this.timer = levelView.accessTimer();
     }
 
@@ -90,25 +89,6 @@ public class LevelFour extends LevelParent {
         updateRevive();
 
     }
-
-//    private void updateRevive() {
-//        if (bossOne.isDestroyed() || bossTwo.isDestroyed()){
-//            BOSS_DEAD_FRAME++;
-//            if (BOSS_DEAD_FRAME == FRAMES_TO_REVIVE) {
-//                if (bossOne.isDestroyed() && !bossTwo.isDestroyed()) {
-//                    bossOne.revive();
-//                    addEnemyUnit(bossOne);
-//                    levelView.showHealthOne();
-//                }
-//                if (bossTwo.isDestroyed() && !bossOne.isDestroyed()) {
-//                    bossTwo.revive();
-//                    addEnemyUnit(bossTwo);
-//                    levelView.showHealthTwo();
-//                }
-//                BOSS_DEAD_FRAME = 0;
-//            }
-//        }
-//    }
 
     private void updateRevive() {
         if (bossOne.isDestroyed() || bossTwo.isDestroyed()){

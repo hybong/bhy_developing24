@@ -20,9 +20,6 @@ import javafx.util.Duration;
 
 public abstract class LevelParent extends Observable {
 
-	private static final String USER_DESTROY_SOUND_PATH = "/com/example/demo/media/soundEffects/destroyed/userDestroy.mp3";
-	private final double USER_DESTROY_SOUND_VOLUME = 0.5;
-
 	private static final double SCREEN_HEIGHT_ADJUSTMENT = 150;
 	private static final int MILLISECOND_DELAY = 50;
 	private final double screenHeight;

@@ -14,7 +14,6 @@ public class LevelThree extends LevelParent {
     private static final int PLAYER_INITIAL_HEALTH = 5;
     private final secondBoss boss;
     private LevelViewLevelThree levelView;
-    private BackgroundMusic backgroundMusic;
 
     public LevelThree(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
