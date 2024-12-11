@@ -36,6 +36,18 @@ public class BackgroundMusic {
         }
     }
 
+    public void pauseMusic() {
+        if (mediaPlayer != null) {
+            mediaPlayer.pause();
+        }
+    }
+
+    public void resumeMusic() {
+        if (mediaPlayer != null) {
+            mediaPlayer.play();
+        }
+    }
+
     // Method to change the volume
     public void setVolume(double volume) {
         if (mediaPlayer != null) {

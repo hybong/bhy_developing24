@@ -3,6 +3,7 @@ package com.example.demo.Levels;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.example.demo.media.BackgroundMusic;
 import com.example.demo.models.ActiveActorDestructible;
 import com.example.demo.models.FighterPlane;
 import com.example.demo.Levels.levelView.LevelView;
@@ -41,6 +42,7 @@ public abstract class LevelParent extends Observable {
 	private int currentNumberOfEnemies;
 	private boolean isPaused;
 	private LevelView levelView;
+	private BackgroundMusic backgroundMusic;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
 		this.root = new Group();
@@ -67,6 +69,7 @@ public abstract class LevelParent extends Observable {
 
 	private void pauseGame() {
 		timeline.pause();
+		backgroundMusic.pauseMusic();
 		isPaused = true;
 		pauseButton.hidePauseButton();
 		playButton.showPlayButton();
@@ -74,6 +77,7 @@ public abstract class LevelParent extends Observable {
 
 	private void resumeGame() {
 		timeline.play();
+		backgroundMusic.resumeMusic();
 		isPaused = false;
 		playButton.hidePlayButton();
 		pauseButton.showPauseButton();
@@ -299,6 +303,11 @@ public abstract class LevelParent extends Observable {
 
 	private void updateNumberOfEnemies() {
 		currentNumberOfEnemies = enemyUnits.size();
+	}
+
+	protected void addBackgroundMusic(String backgroundMusic) {
+		this.backgroundMusic = new BackgroundMusic(backgroundMusic);
+		this.backgroundMusic.playMusic();
 	}
 
 }
