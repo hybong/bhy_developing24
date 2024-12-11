@@ -2,13 +2,13 @@ package com.example.demo.view;
 
 import com.example.demo.controller.Main;
 import com.example.demo.controller.Controller;
+import com.example.demo.media.BackgroundMusic;
+
 import javafx.scene.control.Alert;
 import java.lang.reflect.InvocationTargetException;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -23,7 +23,7 @@ public class MainMenu {
     private final String BACKGROUND_IMAGE = "/com/example/demo/images/mainmenuBackground.jpg";
     private final String BACKGROUND_MUSIC = "/com/example/demo/media/backgroundMusic/MainMenuMusic.mp3";
     private Controller myController;
-    private MediaPlayer mediaPlayer;
+    private BackgroundMusic backgroundMusic;
 
     public MainMenu(Stage stage) {
         this.stage = stage;
@@ -88,30 +88,14 @@ public class MainMenu {
         stage.setTitle(Main.TITLE);
         stage.show();
 
-        playBackgroundMusic();
+        backgroundMusic = new BackgroundMusic(BACKGROUND_MUSIC);
+        backgroundMusic.playMusic();
+
     }
 
     private void startPlaying() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         myController = new Controller(stage);
         myController.launchGame();
-    }
-
-    private void playBackgroundMusic() {
-        // Make sure the music file is in the correct path, here it's located in the "resources" folder
-        String musicPath = getClass().getResource(BACKGROUND_MUSIC).toExternalForm();
-        Media music = new Media(musicPath);
-        mediaPlayer = new MediaPlayer(music);
-
-        // Loop the music
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.setVolume(1);  // Adjust volume (0.0 is silent, 1.0 is full volume)
-        mediaPlayer.play();
-    }
-
-    private void stopMusic() {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-        }
     }
 
 }
