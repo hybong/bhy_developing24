@@ -1,10 +1,12 @@
 package com.example.demo.models;
 
+import com.example.demo.media.SoundEffect;
 import com.example.demo.projectiles.UserProjectile;
 
 public class UserPlane extends FighterPlane {
 
 	private static final String IMAGE_NAME = "userplane.png";
+	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/userShooting.mp3";
 	private static final double Y_UPPER_BOUND = 10;
 	private static final double Y_LOWER_BOUND = 650;
 	private static final double X_UPPER_BOUND = 0;
@@ -19,11 +21,13 @@ public class UserPlane extends FighterPlane {
 	private int verticalVelocityMultiplier;
 	private int horizontalVelocityMultiplier;
 	private int numberOfKills;
+	private SoundEffect shootingSound;
 
 	public UserPlane(int initialHealth) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth);
 		verticalVelocityMultiplier = 0;
 		horizontalVelocityMultiplier = 0;
+		shootingSound = new SoundEffect(SHOOTING_SOUND);
 	}
 	
 	@Override
@@ -53,6 +57,7 @@ public class UserPlane extends FighterPlane {
 	
 	@Override
 	public ActiveActorDestructible fireProjectile() {
+		shootingSound.playSoundEffect(0.07);
 		return new UserProjectile(getProjectileXPosition(PROJECTILE_X_POSITION), getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
