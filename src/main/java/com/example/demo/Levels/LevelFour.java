@@ -2,6 +2,7 @@ package com.example.demo.Levels;
 
 import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.Levels.levelView.LevelViewLevelFour;
+import com.example.demo.media.BackgroundMusic;
 import com.example.demo.models.Boss;
 import com.example.demo.models.secondBoss;
 import javafx.scene.Scene;
@@ -9,15 +10,18 @@ import javafx.scene.Scene;
 public class LevelFour extends LevelParent {
 
     private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background4.jpg";
+    private static final String BACKGROUND_MUSIC = "/com/example/demo/media/backgroundMusic/LevelFourMusic.mp3";
     private static final int PLAYER_INITIAL_HEALTH = 8;
     private final Boss bossOne;
     private final secondBoss bossTwo;
     private LevelViewLevelFour levelView;
+    private BackgroundMusic backgroundMusic;
     private final int FRAMES_TO_REVIVE = 100;
     private static int BOSS_DEAD_FRAME;
 
     public LevelFour(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
+        addBackgroundMusic(BACKGROUND_MUSIC);
         bossOne = new Boss();
         bossTwo = new secondBoss();
         BOSS_DEAD_FRAME = 0;
