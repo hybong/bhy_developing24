@@ -21,7 +21,7 @@ import java.lang.reflect.InvocationTargetException;
 public class MainMenu {
 
     private final Stage stage;
-    private final String BACKGROUND_VIDEO = "/com/example/demo/images/mainMenuBackground/mainMenuBackground.mp4";  // Update to video path
+    private final String BACKGROUND_VIDEO = "/com/example/demo/video/mainMenuBackground.mp4";  // Update to video path
     private final String BACKGROUND_MUSIC = "/com/example/demo/media/backgroundMusic/MainMenuMusic.mp3";
     private final String BUTTON_SOUND = "/com/example/demo/media/soundEffects/click.mp3";
     private Controller myController;
