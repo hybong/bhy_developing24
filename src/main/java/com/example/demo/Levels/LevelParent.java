@@ -83,6 +83,11 @@ public abstract class LevelParent extends Observable {
 		pauseButton.showPauseButton();
 	}
 
+	protected void hidePausePlayButton() {
+		playButton.hidePlayButton();
+		pauseButton.hidePauseButton();
+	}
+
 	protected abstract void initializeFriendlyUnits();
 
 	protected abstract void checkIfGameOver();
