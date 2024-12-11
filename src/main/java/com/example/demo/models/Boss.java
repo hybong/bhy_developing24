@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.example.demo.media.SoundEffect;
 import com.example.demo.projectiles.BossProjectile;
 
 import java.util.*;
@@ -7,6 +8,7 @@ import java.util.*;
 public class Boss extends FighterPlane{
 
 	private static final String BOSS_IMAGE = "bossplane.png";
+	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/bossShooting.mp3";
 	private static final double INITIAL_X_POSITION = 860.0;
 	private static final double INITIAL_Y_POSITION = 400;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
@@ -27,6 +29,8 @@ public class Boss extends FighterPlane{
 	protected int indexOfCurrentMove;
 	private int framesWithShieldActivated;
 	public int ShieldCount = 0;
+	private SoundEffect shootingSound;
+	private final double SHOOTING_SOUND_VOLUME = 0.1;
 
 	public Boss() {
 		super(BOSS_IMAGE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
@@ -35,6 +39,7 @@ public class Boss extends FighterPlane{
 		indexOfCurrentMove = 0;
 		framesWithShieldActivated = 0;
 		isShielded = false;
+		shootingSound = new SoundEffect(SHOOTING_SOUND);
 		initializeMovePattern();
 	}
 
@@ -56,9 +61,14 @@ public class Boss extends FighterPlane{
 
 	@Override
 	public ActiveActorDestructible fireProjectile() {
-		return bossFiresInCurrentFrame() ? new BossProjectile(getProjectileInitialPosition()) : null;
+		// Play shooting sound when the boss fires a projectile
+		if (bossFiresInCurrentFrame()) {
+			this.shootingSound.playSoundEffect(SHOOTING_SOUND_VOLUME); // Play the sound effect
+			return new BossProjectile(getProjectileInitialPosition());
+		}
+		return null; // If the boss doesn't fire, return null
 	}
-	
+
 	@Override
 	public void takeDamage() {
 		if (!isShielded) {
