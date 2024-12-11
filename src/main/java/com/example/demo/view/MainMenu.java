@@ -6,9 +6,6 @@ import com.example.demo.media.BackgroundMusic;
 import com.example.demo.media.SoundEffect;
 
 import javafx.scene.control.Alert;
-import java.lang.reflect.InvocationTargetException;
-
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -16,12 +13,15 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import java.lang.reflect.InvocationTargetException;
 
 public class MainMenu {
 
     private final Stage stage;
-    private final String BACKGROUND_IMAGE = "/com/example/demo/images/mainmenuBackground.jpg";
+    private final String BACKGROUND_VIDEO = "/com/example/demo/images/mainMenuBackground/mainMenuBackground.mp4";  // Update to video path
     private final String BACKGROUND_MUSIC = "/com/example/demo/media/backgroundMusic/MainMenuMusic.mp3";
     private final String BUTTON_SOUND = "/com/example/demo/media/soundEffects/click.mp3";
     private Controller myController;
@@ -77,28 +77,35 @@ public class MainMenu {
             stage.close();
         });
 
+        // Create a Media object for the background video
+        Media media = new Media(getClass().getResource(BACKGROUND_VIDEO).toExternalForm());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        MediaView mediaView = new MediaView(mediaPlayer);
+
+        // Set the MediaView as the background
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Loop the video
+        mediaPlayer.setMute(true); // Mute the video audio, since you're already playing background music
+        mediaView.setFitWidth(Main.SCREEN_WIDTH);
+        mediaView.setFitHeight(Main.SCREEN_HEIGHT);
+        mediaView.setPreserveRatio(false);
+
+        // Set up the layout
         VBox layout = new VBox(10);
         layout.getChildren().addAll(title, startButton, exitButton);
         layout.setAlignment(javafx.geometry.Pos.CENTER);
 
-        Image backgroundImage = new Image(getClass().getResource(BACKGROUND_IMAGE).toExternalForm());
-        BackgroundImage backGroundImage = new BackgroundImage(
-                backgroundImage,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true)
-        );
-        layout.setBackground(new Background(backGroundImage));
-
-        Scene scene = new Scene(layout, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+        // Set the background of the layout to the video (using MediaView)
+        StackPane root = new StackPane();
+        root.getChildren().addAll(mediaView, layout); // Place the video behind the layout
+        Scene scene = new Scene(root, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
         stage.setScene(scene);
         stage.setTitle(Main.TITLE);
         stage.show();
 
+        // Play the background music
         backgroundMusic = new BackgroundMusic(BACKGROUND_MUSIC);
         backgroundMusic.playMusic();
-
     }
 
     private void startPlaying() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
