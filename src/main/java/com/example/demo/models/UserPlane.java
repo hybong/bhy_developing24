@@ -22,6 +22,7 @@ public class UserPlane extends FighterPlane {
 	private int horizontalVelocityMultiplier;
 	private int numberOfKills;
 	private SoundEffect shootingSound;
+	private final double SHOOTING_SOUND_VOLUME = 0.1;
 
 	public UserPlane(int initialHealth) {
 		super(IMAGE_NAME, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, initialHealth);
@@ -57,7 +58,7 @@ public class UserPlane extends FighterPlane {
 	
 	@Override
 	public ActiveActorDestructible fireProjectile() {
-		shootingSound.playSoundEffect(0.07);
+		shootingSound.playSoundEffect(SHOOTING_SOUND_VOLUME);
 		return new UserProjectile(getProjectileXPosition(PROJECTILE_X_POSITION), getProjectileYPosition(PROJECTILE_Y_POSITION_OFFSET));
 	}
 
