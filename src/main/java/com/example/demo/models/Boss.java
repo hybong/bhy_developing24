@@ -35,7 +35,7 @@ public class Boss extends FighterPlane{
 	private int framesWithShieldActivated;
 	public int ShieldCount = 0;
 	private final SoundEffect shootingSound;
-	private final double SHOOTING_SOUND_VOLUME = 0.1;
+	private final double SHOOTING_SOUND_VOLUME = 0.3;
 	private final SoundEffect shieldOnSound;
 	private final double SHIELD_ON_VOLUME = 1;
 	private final SoundEffect shieldOffSound;
