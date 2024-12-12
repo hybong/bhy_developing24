@@ -25,7 +25,7 @@ public class LoseLevelMenu extends StackPane {
 
         // Create VBox for the layout
         HBox menuLayout = new HBox(15);
-        menuLayout.getChildren().addAll(replayButton, backtoMainButton);
+        menuLayout.getChildren().addAll(backtoMainButton, replayButton);
         menuLayout.setAlignment(javafx.geometry.Pos.CENTER);
 
         // Set the background and size for the Pause Menu
@@ -40,7 +40,7 @@ public class LoseLevelMenu extends StackPane {
 
     // Method to create "Replay" button
     private Button createReplayButton() {
-        Button button = new Button("Replay");
+        Button button = new Button("Retry");
         button.setFont(Font.font("Arial", 18));
         button.setTextFill(Color.WHITE);
         button.setStyle("-fx-background-color: #4CAF50; -fx-font-weight: bold;");
