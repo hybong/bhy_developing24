@@ -29,7 +29,7 @@ public class LevelOne extends LevelParent {
 			levelView.hideKills();
 		}
 		else if (userHasReachedKillTarget()) {
-			goToNextLevel(NEXT_LEVEL);
+			checkToNextLevel(NEXT_LEVEL);
 			levelView.hideKills();
 		}
 	}

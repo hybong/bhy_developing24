@@ -32,7 +32,7 @@ public class LevelTwo extends LevelParent {
 			loseGame();
 		}
 		else if (boss.isDestroyed()) {
-			goToNextLevel(NEXT_LEVEL);
+			checkToNextLevel(NEXT_LEVEL);
 		}
 	}
 

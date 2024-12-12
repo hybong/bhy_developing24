@@ -10,10 +10,7 @@ import com.example.demo.models.ActiveActorDestructible;
 import com.example.demo.models.FighterPlane;
 import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.models.UserPlane;
-import com.example.demo.view.LoseLevelMenu;
-import com.example.demo.view.PauseButton;
-import com.example.demo.view.PlayButton;
-import com.example.demo.view.PauseMenu;
+import com.example.demo.view.*;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -42,6 +39,7 @@ public abstract class LevelParent extends Observable {
 	private final PauseMenu pauseMenu;
 	private final Main main = new Main();
 	private static String currentLevelName = "com.example.demo.Levels.LevelOne";
+	public static String nextLevelName = "com.example.demo.Levels.LevelTwo";
 
 	private final List<ActiveActorDestructible> friendlyUnits;
 	private final List<ActiveActorDestructible> enemyUnits;
@@ -54,6 +52,7 @@ public abstract class LevelParent extends Observable {
 	private BackgroundMusic backgroundMusic;
 	public static boolean isMute = false;
 	private LoseLevelMenu loseLevelMenu;
+	private WinLevelMenu winLevelMenu;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
 		this.root = new Group();
@@ -76,6 +75,7 @@ public abstract class LevelParent extends Observable {
 		this.isPaused = false;
 		pauseMenu = new PauseMenu(this);
 		loseLevelMenu = new LoseLevelMenu(this);
+
 		initializeTimeline();
 		friendlyUnits.add(user);
 	}
@@ -129,6 +129,15 @@ public abstract class LevelParent extends Observable {
 		setChanged();
 		backgroundMusic.stopMusic();
 		notifyObservers(levelName);
+	}
+
+	public void checkToNextLevel(String levelName) {
+		timeline.stop();
+		nextLevelName = levelName;
+		winLevelMenu = new WinLevelMenu(this);
+		root.getChildren().add(winLevelMenu);
+		winLevelMenu.setVisible(true);
+		winLevelMenu.toFront();
 	}
 
 	private void updateScene() {
