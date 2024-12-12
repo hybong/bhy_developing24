@@ -10,6 +10,10 @@ public class Boss extends FighterPlane{
 
 	private static final String BOSS_IMAGE = "bossplane.png";
 	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/bossShooting.mp3";
+	private static final String SHIELD_ON_SOUND = "/com/example/demo/media/soundEffects/bossShield.mp3";
+	private static final String SHIELD_OFF_SOUND = "/com/example/demo/media/soundEffects/bossShieldDown.mp3";
+	private static final String REVIVE_SOUND = "/com/example/demo/media/soundEffects/bossRevive.mp3";
+
 	private static final int IMAGE_HEIGHT = 80;
 	private static final double INITIAL_X_POSITION = Main.SCREEN_WIDTH - 5 * IMAGE_HEIGHT;
 	private static final double INITIAL_Y_POSITION = (double) Main.SCREEN_HEIGHT /2 - (double) IMAGE_HEIGHT /2;
@@ -30,8 +34,14 @@ public class Boss extends FighterPlane{
 	protected int indexOfCurrentMove;
 	private int framesWithShieldActivated;
 	public int ShieldCount = 0;
-	private SoundEffect shootingSound;
+	private final SoundEffect shootingSound;
 	private final double SHOOTING_SOUND_VOLUME = 0.1;
+	private final SoundEffect shieldOnSound;
+	private final double SHIELD_ON_VOLUME = 1;
+	private final SoundEffect shieldOffSound;
+	private final double SHIELD_OFF_VOLUME = 1;
+	private final SoundEffect reviveSound;
+	private final double REVIVE_SOUND_VOLUME = 1;
 
 	public Boss() {
 		super(BOSS_IMAGE, IMAGE_HEIGHT, INITIAL_X_POSITION, INITIAL_Y_POSITION, HEALTH);
@@ -41,6 +51,9 @@ public class Boss extends FighterPlane{
 		framesWithShieldActivated = 0;
 		isShielded = false;
 		shootingSound = new SoundEffect(SHOOTING_SOUND);
+		shieldOnSound = new SoundEffect(SHIELD_ON_SOUND);
+		shieldOffSound = new SoundEffect(SHIELD_OFF_SOUND);
+		reviveSound = new SoundEffect(REVIVE_SOUND);
 		initializeMovePattern();
 	}
 
@@ -127,11 +140,13 @@ public class Boss extends FighterPlane{
 
 	protected void activateShield() {
 		isShielded = true;
+		shieldOnSound.playSoundEffect(SHIELD_ON_VOLUME);
 		this.ShieldCount++;
 	}
 
 	private void deactivateShield() {
 		isShielded = false;
+		shieldOffSound.playSoundEffect(SHIELD_OFF_VOLUME);
 		framesWithShieldActivated = 0;
 	}
 
@@ -141,6 +156,7 @@ public class Boss extends FighterPlane{
 
 	public void revive() {
 		if(this.isDestroyed()){
+			reviveSound.playSoundEffect(REVIVE_SOUND_VOLUME);
 			this.setDestroyed(false);
 			this.setHealth(HEALTH);
 			this.ShieldCount = 0;
