@@ -15,7 +15,7 @@ public class SecondBoss extends Boss {
     private static final int HEALTH_DANGER = 30;
     public static final int HEALTH = 50;
     private static final int MAX_SHIELD = 5;
-    private static final double DANGER_FIRE_RATE = .1;
+    public static final double DANGER_FIRE_RATE = .1;
     private static final int DANGER_VELOCITY = 12;
     private boolean MOVE_UPDATED;
     private boolean isInDanger;
