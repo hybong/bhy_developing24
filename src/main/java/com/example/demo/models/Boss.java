@@ -144,7 +144,7 @@ public class Boss extends FighterPlane{
 		this.ShieldCount++;
 	}
 
-	private void deactivateShield() {
+	public void deactivateShield() {
 		isShielded = false;
 		shieldOffSound.playSoundEffect(SHIELD_OFF_VOLUME);
 		framesWithShieldActivated = 0;
