@@ -50,6 +50,7 @@ public abstract class LevelParent extends Observable {
 	private boolean isPaused;
 	private LevelView levelView;
 	private BackgroundMusic backgroundMusic;
+	public static boolean isMute = false;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
 		this.root = new Group();
@@ -320,12 +321,20 @@ public abstract class LevelParent extends Observable {
 
 	protected void addBackgroundMusic(String backgroundMusic) {
 		this.backgroundMusic = new BackgroundMusic(backgroundMusic);
-		this.backgroundMusic.playMusic();
-	}
+        this.backgroundMusic.playMusic();
+        if(isMute) {
+            this.backgroundMusic.pauseMusic();
+        }
+    }
 
 	public void toggleBackgroundMusic() {
-		if(backgroundMusic.isPlaying()) backgroundMusic.pauseMusic();
-		else backgroundMusic.resumeMusic();
+		if(backgroundMusic.isPlaying()) {
+			isMute = true;
+            backgroundMusic.pauseMusic();
+        } else {
+			isMute = false;
+            backgroundMusic.resumeMusic();
+        }
 	}
 
 	public boolean backgroundMusicPlaying() {
@@ -335,6 +344,8 @@ public abstract class LevelParent extends Observable {
 	public void goToMainMenu() {
 		try {
 			timeline.stop();
+			backgroundMusic.stopMusic();
+			setChanged();
 			Stage stage = (Stage) root.getScene().getWindow();
 			main.start(stage);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException |

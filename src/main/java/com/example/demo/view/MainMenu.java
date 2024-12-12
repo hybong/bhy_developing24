@@ -18,6 +18,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import java.lang.reflect.InvocationTargetException;
 
+import static com.example.demo.Levels.LevelParent.isMute;
+
 public class MainMenu {
 
     private final Stage stage;
@@ -34,22 +36,36 @@ public class MainMenu {
     }
 
     public void display() {
+
+        backgroundMusic = new BackgroundMusic(BACKGROUND_MUSIC);
+        backgroundMusic.playMusic();
+        if(isMute) backgroundMusic.pauseMusic();
+
         Button startButton = new Button("Start Game");
+        Button musicButton = new Button("Music: On");
         Button exitButton = new Button("Exit");
         Label title = new Label();
 
         title.setText(Main.TITLE);
-        title.setFont(Font.font("Verdana", 72)); // Set the font to Arial and size to 36
+        title.setFont(Font.font("Verdana", 100)); // Set the font to Arial and size to 36
         title.setTextFill(Color.web("#FFFFFF")); // Set the text color to white using hex code
         title.setStyle("-fx-font-weight: bold;");
 
         // Style the start button
+        if(isMute) musicButton.setText("Music: Off");
         startButton.setFont(Font.font("Arial", 18)); // Set font and size for start button
         startButton.setTextFill(Color.web("#FFFFFF")); // White text color for the button
         startButton.setStyle("-fx-background-color: #4CAF50; -fx-font-weight: bold;"); // Green background and bold font
         startButton.setMinWidth(200); // Set a minimum width
         startButton.setMinHeight(50); // Set a minimum height
         startButton.setEffect(new javafx.scene.effect.DropShadow(10, Color.BLACK)); // Optional: Add a shadow effect
+
+        musicButton.setFont(Font.font("Arial", 18)); // Set font and size for start button
+        musicButton.setTextFill(Color.web("#FFFFFF")); // White text color for the button
+        musicButton.setStyle("-fx-background-color: #2196F3; -fx-font-weight: bold;"); // Blue background and bold font
+        musicButton.setMinWidth(200); // Set a minimum width
+        musicButton.setMinHeight(50); // Set a minimum height
+        musicButton.setEffect(new javafx.scene.effect.DropShadow(10, Color.BLACK));
 
         // Style the exit button
         exitButton.setFont(Font.font("Arial", 18)); // Set font and size for exit button
@@ -72,6 +88,18 @@ public class MainMenu {
                 alert.show();
             }
         });
+        musicButton.setOnAction(event -> {
+            buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
+            if(isMute) {
+                backgroundMusic.resumeMusic();
+                isMute = false;
+                musicButton.setText("Music: On");
+            } else {
+                backgroundMusic.pauseMusic();
+                isMute = true;
+                musicButton.setText("Music: Off");
+            }
+        });
         exitButton.setOnAction(event -> {
             buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
             stage.close();
@@ -92,7 +120,7 @@ public class MainMenu {
 
         // Set up the layout
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(title, startButton, exitButton);
+        layout.getChildren().addAll(title, startButton, musicButton, exitButton);
         layout.setAlignment(javafx.geometry.Pos.CENTER);
 
         // Set the background of the layout to the video (using MediaView)
@@ -103,9 +131,6 @@ public class MainMenu {
         stage.setTitle(Main.TITLE);
         stage.show();
 
-        // Play the background music
-        backgroundMusic = new BackgroundMusic(BACKGROUND_MUSIC);
-        backgroundMusic.playMusic();
     }
 
     private void startPlaying() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
