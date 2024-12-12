@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.example.demo.controller.Main;
 import com.example.demo.media.SoundEffect;
 import com.example.demo.projectiles.BossProjectile;
 
@@ -9,19 +10,19 @@ public class Boss extends FighterPlane{
 
 	private static final String BOSS_IMAGE = "bossplane.png";
 	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/bossShooting.mp3";
-	private static final double INITIAL_X_POSITION = 860.0;
-	private static final double INITIAL_Y_POSITION = 400;
+	private static final int IMAGE_HEIGHT = 80;
+	private static final double INITIAL_X_POSITION = Main.SCREEN_WIDTH - 5 * IMAGE_HEIGHT;
+	private static final double INITIAL_Y_POSITION = (double) Main.SCREEN_HEIGHT /2 - (double) IMAGE_HEIGHT /2;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
 	protected double BOSS_FIRE_RATE = .001;
 	private static final double BOSS_SHIELD_PROBABILITY = .002;
-	private static final int IMAGE_HEIGHT = 80;
 	protected static int VERTICAL_VELOCITY = 8;
 	public static final int HEALTH = 20;
 	protected static int MOVE_FREQUENCY_PER_CYCLE = 5;
 	private static final int ZERO = 0;
 	protected static int MAX_FRAMES_WITH_SAME_MOVE = 10;
 	private static final int Y_POSITION_UPPER_BOUND = 10;
-	private static final int Y_POSITION_LOWER_BOUND = 600;
+	private static final int Y_POSITION_LOWER_BOUND = Main.SCREEN_HEIGHT - IMAGE_HEIGHT - 60;
 	private static final int MAX_FRAMES_WITH_SHIELD = 50;
 	protected List<Integer> movePattern;
 	private boolean isShielded;

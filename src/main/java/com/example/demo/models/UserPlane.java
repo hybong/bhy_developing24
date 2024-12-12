@@ -1,19 +1,20 @@
 package com.example.demo.models;
 
+import com.example.demo.controller.Main;
 import com.example.demo.media.SoundEffect;
 import com.example.demo.projectiles.UserProjectile;
 
 public class UserPlane extends FighterPlane {
 
 	private static final String IMAGE_NAME = "userplane.png";
+	private static final int IMAGE_HEIGHT = 40;
 	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/userShooting.mp3";
 	private static final double Y_UPPER_BOUND = 10;
-	private static final double Y_LOWER_BOUND = 650;
+	private static final double Y_LOWER_BOUND = Main.SCREEN_HEIGHT - IMAGE_HEIGHT - 60;
 	private static final double X_UPPER_BOUND = 0;
-	private static final double X_LOWER_BOUND = 700;
+	private static final double X_LOWER_BOUND = Main.SCREEN_WIDTH - 550;
 	private static final double INITIAL_X_POSITION = 5.0;
 	private static final double INITIAL_Y_POSITION = 300.0;
-	private static final int IMAGE_HEIGHT = 40;
 	private static int VERTICAL_VELOCITY = 8;
 	private static int HORIZONTAL_VELOCITY = 8;
 	private static final int PROJECTILE_X_POSITION = 140;
