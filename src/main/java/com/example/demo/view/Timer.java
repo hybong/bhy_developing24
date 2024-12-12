@@ -1,5 +1,6 @@
 package com.example.demo.view;
 
+import com.example.demo.controller.Main;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
@@ -11,7 +12,7 @@ public class Timer extends StackPane {
     private int timeRemaining; // The time left in the countdown
     private Timeline countdownTimeline; // The Timeline to manage the countdown
     private Label timerLabel; // The label that will display the countdown
-    private static final int XPosition = 400;
+    private static final int XPosition = Main.SCREEN_WIDTH /2 - 70;
     private static final int YPosition = 10;
     private boolean timeFinished;
 

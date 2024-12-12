@@ -1,5 +1,6 @@
 package com.example.demo.view;
 
+import com.example.demo.controller.Main;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -7,8 +8,9 @@ import javafx.scene.input.MouseEvent;
 public class PlayButton extends ImageView {
 
     private static final double PLAY_BUTTON_SIZE = 60;
-    private static final double PLAY_BUTTON_X_POSITION = 800;
     private static final double PLAY_BUTTON_Y_POSITION = 10;
+    private static final double PLAY_BUTTON_X_POSITION = Main.SCREEN_WIDTH - PLAY_BUTTON_SIZE
+                                                            - PLAY_BUTTON_Y_POSITION;
     private static final String PLAY_BUTTON_IMAGE = "/com/example/demo/images/playbutton.png";
 
     public PlayButton(Runnable resume) {

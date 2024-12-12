@@ -1,6 +1,7 @@
 package com.example.demo.view;
 
 import com.example.demo.Levels.LevelParent;
+import com.example.demo.controller.Main;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -12,6 +13,8 @@ import static com.example.demo.Levels.LevelParent.isMute;
 public class PauseMenu extends StackPane {
 
     private LevelParent levelParent;
+    private final double MENU_WIDTH = 350;
+    private final double MENU_HEIGHT = 300;
 
     // Constructor
     public PauseMenu(LevelParent levelParent) {
@@ -30,9 +33,9 @@ public class PauseMenu extends StackPane {
 
         // Set the background and size for the Pause Menu
         this.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");
-        this.setPrefSize(400, 300);
-        this.setLayoutX(450);
-        this.setLayoutY(225);
+        this.setPrefSize(MENU_WIDTH, MENU_HEIGHT);
+        this.setLayoutX((double) Main.SCREEN_WIDTH /2 - MENU_WIDTH /2);
+        this.setLayoutY((double) Main.SCREEN_HEIGHT /2 - MENU_HEIGHT /2);
 
         // Add the VBox to the StackPane
         this.getChildren().add(menuLayout);
@@ -44,6 +47,8 @@ public class PauseMenu extends StackPane {
         button.setFont(Font.font("Arial", 18));
         button.setTextFill(Color.WHITE);
         button.setStyle("-fx-background-color: #4CAF50; -fx-font-weight: bold;");
+        button.setMinWidth(200);
+        button.setMinHeight(50);
         button.setOnAction(e -> resumeGame());
         return button;
     }
@@ -55,6 +60,8 @@ public class PauseMenu extends StackPane {
         button.setFont(Font.font("Arial", 18));
         button.setTextFill(Color.WHITE);
         button.setStyle("-fx-background-color: #2196F3; -fx-font-weight: bold;");
+        button.setMinWidth(200);
+        button.setMinHeight(50);
         button.setOnAction(e -> toggleMusic(button));
         return button;
     }
@@ -65,6 +72,8 @@ public class PauseMenu extends StackPane {
         button.setFont(Font.font("Arial", 18));
         button.setTextFill(Color.WHITE);
         button.setStyle("-fx-background-color: #F44336; -fx-font-weight: bold;");
+        button.setMinWidth(200);
+        button.setMinHeight(50);
         button.setOnAction(e -> goToMainMenu());
         return button;
     }
