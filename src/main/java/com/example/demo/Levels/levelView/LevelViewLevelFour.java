@@ -1,7 +1,7 @@
 package com.example.demo.Levels.levelView;
 
 import com.example.demo.Levels.LevelFour;
-import com.example.demo.models.secondBoss;
+import com.example.demo.models.SecondBoss;
 import com.example.demo.view.BossHealth;
 import com.example.demo.view.ShieldImage;
 import com.example.demo.models.Boss;
@@ -31,7 +31,7 @@ public class LevelViewLevelFour extends LevelView {
         root.getChildren().addAll(shieldImageOne, shieldImageTwo);
     }
 
-    public void updateShieldPosition(Boss bossOne, secondBoss bossTwo) {
+    public void updateShieldPosition(Boss bossOne, SecondBoss bossTwo) {
         double bossOneX = bossOne.getLayoutX() + bossOne.getTranslateX();
         double bossOneY = bossOne.getLayoutY() + bossOne.getTranslateY();
         shieldImageOne.updateShieldPosition(bossOneX, bossOneY);
@@ -56,7 +56,7 @@ public class LevelViewLevelFour extends LevelView {
         shieldImageTwo.hideShield();
     }
 
-    public void updateHealthPosition(Boss bossOne, secondBoss bossTwo) {
+    public void updateHealthPosition(Boss bossOne, SecondBoss bossTwo) {
         double bossOneX = bossOne.getLayoutX() + bossOne.getTranslateX();
         double bossOneY = bossOne.getLayoutY() + bossOne.getTranslateY();
         bossOneHealth.updateHealthPosition(bossOneX, bossOneY);

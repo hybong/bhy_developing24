@@ -2,7 +2,7 @@ package com.example.demo.Levels;
 
 import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.Levels.levelView.LevelViewLevelThree;
-import com.example.demo.models.secondBoss;
+import com.example.demo.models.SecondBoss;
 import javafx.scene.Scene;
 
 public class LevelThree extends LevelParent {
@@ -12,12 +12,12 @@ public class LevelThree extends LevelParent {
     private static final String NEXT_LEVEL = "com.example.demo.Levels.LevelFour";
     private final double BACKGROUND_MUSIC_VOLUME = 0.5;
     private static final int PLAYER_INITIAL_HEALTH = 5;
-    private final secondBoss boss;
+    private final SecondBoss boss;
     private LevelViewLevelThree levelView;
 
     public LevelThree(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
-        boss = new secondBoss();
+        boss = new SecondBoss();
         addBackgroundMusic(BACKGROUND_MUSIC, BACKGROUND_MUSIC_VOLUME);
     }
 
@@ -47,7 +47,7 @@ public class LevelThree extends LevelParent {
 
     @Override
     protected LevelView instantiateLevelView() {
-        levelView = new LevelViewLevelThree(getRoot(), PLAYER_INITIAL_HEALTH, secondBoss.HEALTH);
+        levelView = new LevelViewLevelThree(getRoot(), PLAYER_INITIAL_HEALTH, SecondBoss.HEALTH);
         return levelView;
     }
 

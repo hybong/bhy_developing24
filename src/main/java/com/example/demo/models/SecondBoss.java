@@ -5,7 +5,7 @@ import com.example.demo.media.SoundEffect;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class secondBoss extends Boss {
+public class SecondBoss extends Boss {
 
     private static final String REVIVE_SOUND = "/com/example/demo/media/soundEffects/bossRevive.mp3";
     private final SoundEffect reviveSound;
@@ -20,7 +20,7 @@ public class secondBoss extends Boss {
     private boolean MOVE_UPDATED;
     private boolean isInDanger;
 
-    public secondBoss() {
+    public SecondBoss() {
         super();
         this.setHealth(HEALTH);
         ShieldCount = 0;

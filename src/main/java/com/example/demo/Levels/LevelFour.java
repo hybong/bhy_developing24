@@ -4,7 +4,7 @@ import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.Levels.levelView.LevelViewLevelFour;
 import com.example.demo.media.BackgroundMusic;
 import com.example.demo.models.Boss;
-import com.example.demo.models.secondBoss;
+import com.example.demo.models.SecondBoss;
 import com.example.demo.view.ReviveTimer;
 import javafx.scene.Scene;
 
@@ -15,7 +15,7 @@ public class LevelFour extends LevelParent {
     private final double BACKGROUND_MUSIC_VOLUME = 0.5;
     private static final int PLAYER_INITIAL_HEALTH = 8;
     private final Boss bossOne;
-    private final secondBoss bossTwo;
+    private final SecondBoss bossTwo;
     private LevelViewLevelFour levelView;
     private BackgroundMusic backgroundMusic;
     public static final int FRAMES_TO_REVIVE = 10;
@@ -26,7 +26,7 @@ public class LevelFour extends LevelParent {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
         addBackgroundMusic(BACKGROUND_MUSIC, BACKGROUND_MUSIC_VOLUME);
         bossOne = new Boss();
-        bossTwo = new secondBoss();
+        bossTwo = new SecondBoss();
         this.timer = levelView.accessTimer();
     }
 
@@ -57,7 +57,7 @@ public class LevelFour extends LevelParent {
 
     @Override
     protected LevelView instantiateLevelView() {
-        levelView = new LevelViewLevelFour(getRoot(), PLAYER_INITIAL_HEALTH, Boss.HEALTH, secondBoss.HEALTH);
+        levelView = new LevelViewLevelFour(getRoot(), PLAYER_INITIAL_HEALTH, Boss.HEALTH, SecondBoss.HEALTH);
         return levelView;
     }
 
