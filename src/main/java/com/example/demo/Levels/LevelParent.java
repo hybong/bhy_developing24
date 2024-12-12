@@ -5,12 +5,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import com.example.demo.controller.Main;
+import com.example.demo.controller.inGameController.*;
 import com.example.demo.media.BackgroundMusic;
 import com.example.demo.models.ActiveActorDestructible;
 import com.example.demo.models.FighterPlane;
 import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.models.UserPlane;
-import com.example.demo.view.*;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.scene.Group;

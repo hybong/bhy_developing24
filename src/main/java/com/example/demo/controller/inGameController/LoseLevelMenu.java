@@ -1,4 +1,4 @@
-package com.example.demo.view;
+package com.example.demo.controller.inGameController;
 
 import com.example.demo.Levels.LevelParent;
 import com.example.demo.controller.Main;

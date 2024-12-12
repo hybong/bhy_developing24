@@ -1,7 +1,5 @@
-package com.example.demo.view;
+package com.example.demo.controller;
 
-import com.example.demo.controller.Main;
-import com.example.demo.controller.Controller;
 import com.example.demo.media.BackgroundMusic;
 import com.example.demo.media.SoundEffect;
 

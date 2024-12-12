@@ -1,4 +1,4 @@
-package com.example.demo.view;
+package com.example.demo.controller.inGameController;
 
 import com.example.demo.controller.Main;
 import com.example.demo.media.SoundEffect;

@@ -11,4 +11,6 @@ module com.example.demo {
     opens com.example.demo.Levels.levelView to javafx.fxml;
     opens com.example.demo.projectiles to javafx.fxml;
     opens com.example.demo.models to javafx.fxml;
+    opens com.example.demo.controller.inGameController to javafx.fxml;
+    opens com.example.demo.controller to javafx.fxml;
 }
