@@ -12,7 +12,7 @@ public class Timer extends StackPane {
     private int timeRemaining; // The time left in the countdown
     private Timeline countdownTimeline; // The Timeline to manage the countdown
     private Label timerLabel; // The label that will display the countdown
-    private static final int XPosition = Main.SCREEN_WIDTH /2 - 70;
+    private static final int XPosition = Main.SCREEN_WIDTH /2 - 100;
     private static final int YPosition = 10;
     private boolean timeFinished;
 
@@ -20,7 +20,7 @@ public class Timer extends StackPane {
     public Timer(int startTime) {
         this.timeRemaining = startTime; // Set the starting time
         this.timerLabel = new Label("Time to Revive: " + timeRemaining); // Initialize the label
-        timerLabel.setStyle("-fx-font-size: 20; -fx-text-fill: black;");
+        timerLabel.setStyle("-fx-font-size: 30; -fx-text-fill: black; -fx-font-weight: bold;");
         this.setLayoutX(XPosition);
         this.setLayoutY(YPosition);
         this.setVisible(false);
