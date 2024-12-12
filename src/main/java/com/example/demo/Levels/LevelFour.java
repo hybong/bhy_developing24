@@ -40,7 +40,6 @@ public class LevelFour extends LevelParent {
             loseGame();
         }
         else if (bossOne.isDestroyed() && bossTwo.isDestroyed()) {
-            hidePausePlayButton();
             timer.hideTimer();
             winGame();
         }

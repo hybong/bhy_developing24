@@ -119,6 +119,7 @@ public abstract class LevelParent extends Observable {
 	}
 
 	public void goToNextLevel(String levelName) {
+		hidePausePlayButton();
 		timeline.stop();
 		setChanged();
 		backgroundMusic.stopMusic();
@@ -277,11 +278,13 @@ public abstract class LevelParent extends Observable {
 	}
 
 	protected void winGame() {
+		hidePausePlayButton();
 		timeline.stop();
 		levelView.showWinImage();
 	}
 
 	protected void loseGame() {
+		hidePausePlayButton();
 		timeline.stop();
 		levelView.showGameOverImage();
 	}
