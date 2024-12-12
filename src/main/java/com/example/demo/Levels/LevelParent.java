@@ -53,6 +53,7 @@ public abstract class LevelParent extends Observable {
 	public static boolean isMute = false;
 	private LoseLevelMenu loseLevelMenu;
 	private WinLevelMenu winLevelMenu;
+	private WinGameMenu winGameMenu;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
 		this.root = new Group();
@@ -314,6 +315,10 @@ public abstract class LevelParent extends Observable {
 		removeActorsNonActors();
 		timeline.stop();
 		levelView.showWinImage();
+		winGameMenu = new WinGameMenu(this);
+		root.getChildren().add(winGameMenu);
+		winGameMenu.setVisible(true);
+		winGameMenu.toFront();
 	}
 
 	protected void loseGame() {
@@ -402,6 +407,13 @@ public abstract class LevelParent extends Observable {
 		levelView.hideHearts();
 		hidePausePlayButton();
 		removeAllActors();
+	}
+
+	public void exitGame() {
+		timeline.stop();
+		backgroundMusic.stopMusic();
+		Stage stage = (Stage) root.getScene().getWindow();
+		stage.close();
 	}
 
 }
