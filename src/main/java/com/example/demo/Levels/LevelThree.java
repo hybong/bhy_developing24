@@ -11,6 +11,7 @@ public class LevelThree extends LevelParent {
     private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background3.jpg";
     private static final String BACKGROUND_MUSIC = "/com/example/demo/media/backgroundMusic/LevelThreeMusic.mp3";
     private static final String NEXT_LEVEL = "com.example.demo.Levels.LevelFour";
+    private final double BACKGROUND_MUSIC_VOLUME = 0.5;
     private static final int PLAYER_INITIAL_HEALTH = 5;
     private final secondBoss boss;
     private LevelViewLevelThree levelView;
@@ -18,7 +19,7 @@ public class LevelThree extends LevelParent {
     public LevelThree(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
         boss = new secondBoss();
-        addBackgroundMusic(BACKGROUND_MUSIC);
+        addBackgroundMusic(BACKGROUND_MUSIC, BACKGROUND_MUSIC_VOLUME);
     }
 
     @Override

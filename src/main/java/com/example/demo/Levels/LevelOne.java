@@ -11,6 +11,7 @@ public class LevelOne extends LevelParent {
 	private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background1.jpg";
 	private static final String BACKGROUND_MUSIC = "/com/example/demo/media/backgroundMusic/LevelOneMusic.mp3";
 	private static final String NEXT_LEVEL = "com.example.demo.Levels.LevelTwo";
+	private final double BACKGROUND_MUSIC_VOLUME = 1;
 	private static final int TOTAL_ENEMIES = 5;
 	private static final int KILLS_TO_ADVANCE = 10;
 	private static final double ENEMY_SPAWN_PROBABILITY = .20;
@@ -19,7 +20,7 @@ public class LevelOne extends LevelParent {
 
 	public LevelOne(double screenHeight, double screenWidth) {
 		super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
-		addBackgroundMusic(BACKGROUND_MUSIC);
+		addBackgroundMusic(BACKGROUND_MUSIC, BACKGROUND_MUSIC_VOLUME);
 	}
 
 	@Override

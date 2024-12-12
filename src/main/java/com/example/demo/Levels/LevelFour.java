@@ -12,6 +12,7 @@ public class LevelFour extends LevelParent {
 
     private static final String BACKGROUND_IMAGE_NAME = "/com/example/demo/images/background4.jpg";
     private static final String BACKGROUND_MUSIC = "/com/example/demo/media/backgroundMusic/LevelFourMusic.mp3";
+    private final double BACKGROUND_MUSIC_VOLUME = 0.5;
     private static final int PLAYER_INITIAL_HEALTH = 8;
     private final Boss bossOne;
     private final secondBoss bossTwo;
@@ -23,7 +24,7 @@ public class LevelFour extends LevelParent {
 
     public LevelFour(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
-        addBackgroundMusic(BACKGROUND_MUSIC);
+        addBackgroundMusic(BACKGROUND_MUSIC, BACKGROUND_MUSIC_VOLUME);
         bossOne = new Boss();
         bossTwo = new secondBoss();
         this.timer = levelView.accessTimer();

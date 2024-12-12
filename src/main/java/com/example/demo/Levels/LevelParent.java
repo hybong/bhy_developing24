@@ -370,9 +370,10 @@ public abstract class LevelParent extends Observable {
 		currentNumberOfEnemies = enemyUnits.size();
 	}
 
-	protected void addBackgroundMusic(String backgroundMusic) {
+	protected void addBackgroundMusic(String backgroundMusic, double volume) {
 		this.backgroundMusic = new BackgroundMusic(backgroundMusic);
         this.backgroundMusic.playMusic();
+		this.backgroundMusic.setVolume(volume);
         if(isMute) {
             this.backgroundMusic.pauseMusic();
         }
