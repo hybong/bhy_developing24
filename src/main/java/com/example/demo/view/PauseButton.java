@@ -1,6 +1,7 @@
 package com.example.demo.view;
 
 import com.example.demo.controller.Main;
+import com.example.demo.media.SoundEffect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -12,6 +13,9 @@ public class PauseButton extends ImageView {
     private static final double PAUSE_BUTTON_X_POSITION = Main.SCREEN_WIDTH - PAUSE_BUTTON_SIZE
                                                             - PAUSE_BUTTON_Y_POSITION;
     private static final String PAUSE_BUTTON_IMAGE = "/com/example/demo/images/pausebutton.png";
+    private final String BUTTON_SOUND = "/com/example/demo/media/soundEffects/click.mp3";
+    private final SoundEffect buttonSound;
+    private final double BUTTON_SOUND_VOLUME = 1;
 
     public PauseButton(Runnable pause) {
         this.setImage(new Image(getClass().getResource(PAUSE_BUTTON_IMAGE).toExternalForm()));
@@ -20,7 +24,11 @@ public class PauseButton extends ImageView {
         this.setLayoutX(PAUSE_BUTTON_X_POSITION);
         this.setLayoutY(PAUSE_BUTTON_Y_POSITION);
         this.toFront();
-        this.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> pause.run());
+        buttonSound = new SoundEffect(BUTTON_SOUND);
+        this.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
+            pause.run();
+        });
     }
 
     public void showPauseButton() {

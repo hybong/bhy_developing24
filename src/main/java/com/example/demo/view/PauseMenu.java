@@ -2,6 +2,7 @@ package com.example.demo.view;
 
 import com.example.demo.Levels.LevelParent;
 import com.example.demo.controller.Main;
+import com.example.demo.media.SoundEffect;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -15,11 +16,15 @@ public class PauseMenu extends StackPane {
     private LevelParent levelParent;
     private final double MENU_WIDTH = 350;
     private final double MENU_HEIGHT = 300;
+    private final String BUTTON_SOUND = "/com/example/demo/media/soundEffects/click.mp3";
+    private final SoundEffect buttonSound;
+    private final double BUTTON_SOUND_VOLUME = 1;
 
     // Constructor
     public PauseMenu(LevelParent levelParent) {
         this.levelParent = levelParent;
         this.setVisible(false);
+        buttonSound = new SoundEffect(BUTTON_SOUND);
 
         // Create Buttons
         Button resumeButton = createResumeButton();
@@ -49,7 +54,10 @@ public class PauseMenu extends StackPane {
         button.setStyle("-fx-background-color: #4CAF50; -fx-font-weight: bold;");
         button.setMinWidth(200);
         button.setMinHeight(50);
-        button.setOnAction(e -> resumeGame());
+        button.setOnAction(e -> {
+            buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
+            resumeGame();
+        });
         return button;
     }
 
@@ -62,7 +70,10 @@ public class PauseMenu extends StackPane {
         button.setStyle("-fx-background-color: #2196F3; -fx-font-weight: bold;");
         button.setMinWidth(200);
         button.setMinHeight(50);
-        button.setOnAction(e -> toggleMusic(button));
+        button.setOnAction(e -> {
+            buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
+            toggleMusic(button);
+        });
         return button;
     }
 
@@ -74,7 +85,10 @@ public class PauseMenu extends StackPane {
         button.setStyle("-fx-background-color: #F44336; -fx-font-weight: bold;");
         button.setMinWidth(200);
         button.setMinHeight(50);
-        button.setOnAction(e -> goToMainMenu());
+        button.setOnAction(e -> {
+            buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
+            goToMainMenu();
+        });
         return button;
     }
 

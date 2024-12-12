@@ -2,6 +2,7 @@ package com.example.demo.view;
 
 import com.example.demo.Levels.LevelParent;
 import com.example.demo.controller.Main;
+import com.example.demo.media.SoundEffect;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -13,10 +14,14 @@ public class LoseLevelMenu extends StackPane {
     private LevelParent levelParent;
     private final double MENU_WIDTH = 550;
     private final double MENU_HEIGHT = 150;
+    private final String BUTTON_SOUND = "/com/example/demo/media/soundEffects/click.mp3";
+    private final SoundEffect buttonSound;
+    private final double BUTTON_SOUND_VOLUME = 1;
 
     // Constructor
     public LoseLevelMenu(LevelParent levelParent) {
         this.levelParent = levelParent;
+        buttonSound = new SoundEffect(BUTTON_SOUND);
         this.setVisible(false);
 
         // Create Buttons
@@ -46,7 +51,10 @@ public class LoseLevelMenu extends StackPane {
         button.setStyle("-fx-background-color: #4CAF50; -fx-font-weight: bold;");
         button.setMinWidth(200);
         button.setMinHeight(50);
-        button.setOnAction(e -> replayLevel());
+        button.setOnAction(e -> {
+                buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
+                replayLevel();
+        });
         return button;
     }
 
@@ -58,7 +66,10 @@ public class LoseLevelMenu extends StackPane {
         button.setStyle("-fx-background-color: #F44336; -fx-font-weight: bold;");
         button.setMinWidth(200);
         button.setMinHeight(50);
-        button.setOnAction(e -> goToMainMenu());
+        button.setOnAction(e -> {
+            buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
+            goToMainMenu();
+        });
         return button;
     }
 

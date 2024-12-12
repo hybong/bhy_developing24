@@ -2,6 +2,7 @@ package com.example.demo.view;
 
 import com.example.demo.Levels.LevelParent;
 import com.example.demo.controller.Main;
+import com.example.demo.media.SoundEffect;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -19,9 +20,14 @@ public class WinLevelMenu extends StackPane {
     private final double MENU_HEIGHT = 300;
     private final double XPosition = (double) Main.SCREEN_WIDTH /2 - MENU_WIDTH /2;
     private final double YPosition = (double) Main.SCREEN_HEIGHT * 0.25;
+    private final String BUTTON_SOUND = "/com/example/demo/media/soundEffects/click.mp3";
+    private final SoundEffect buttonSound;
+    private final double BUTTON_SOUND_VOLUME = 1;
 
     // Constructor
     public WinLevelMenu(LevelParent levelParent) {
+        buttonSound = new SoundEffect(BUTTON_SOUND);
+
         this.levelParent = levelParent;
         this.setVisible(false);
 
@@ -63,7 +69,10 @@ public class WinLevelMenu extends StackPane {
         button.setStyle("-fx-background-color: #4CAF50; -fx-font-weight: bold;");
         button.setMinWidth(200);
         button.setMinHeight(50);
-        button.setOnAction(e -> nextLevel());
+        button.setOnAction(e -> {
+            buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
+            nextLevel();
+        });
         return button;
     }
 
@@ -75,7 +84,10 @@ public class WinLevelMenu extends StackPane {
         button.setStyle("-fx-background-color: #F44336; -fx-font-weight: bold;");
         button.setMinWidth(200);
         button.setMinHeight(50);
-        button.setOnAction(e -> goToMainMenu());
+        button.setOnAction(e -> {
+            buttonSound.playSoundEffect(BUTTON_SOUND_VOLUME);
+            goToMainMenu();
+        });
         return button;
     }
 
