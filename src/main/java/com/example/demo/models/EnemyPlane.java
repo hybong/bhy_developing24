@@ -8,10 +8,10 @@ public class EnemyPlane extends FighterPlane {
 	private static final String IMAGE_NAME = "enemyplane.png";
 	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/enemyPlaneShooting.mp3";
 	private static final int IMAGE_HEIGHT = 50;
-	private static final int HORIZONTAL_VELOCITY = -6;
+	public static final int HORIZONTAL_VELOCITY = -6;
 	private static final double PROJECTILE_X_POSITION_OFFSET = -40.0;
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 26.0;
-	private static final int INITIAL_HEALTH = 1;
+	public static final int INITIAL_HEALTH = 1;
 	private static final double FIRE_RATE = .02;
 	private SoundEffect shootingSound;
 	private final double SHOOTING_SOUND_VOLUME = 0.2;
