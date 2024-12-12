@@ -1,6 +1,5 @@
 package com.example.demo.Levels;
 
-import com.example.demo.media.BackgroundMusic;
 import com.example.demo.models.Boss;
 import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.Levels.levelView.LevelViewLevelTwo;
@@ -62,9 +61,7 @@ public class LevelTwo extends LevelParent {
 
 	public void updateLevelView() {
 		super.updateLevelView();
-		// update shield position
 		levelView.updateShieldPosition(boss);
-//		boolean bossWasShielded = isBossShielded;
 
 		if (boss.isShielded()) {
 			levelView.showShield();
