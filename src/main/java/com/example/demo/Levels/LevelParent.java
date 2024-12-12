@@ -10,6 +10,7 @@ import com.example.demo.models.ActiveActorDestructible;
 import com.example.demo.models.FighterPlane;
 import com.example.demo.Levels.levelView.LevelView;
 import com.example.demo.models.UserPlane;
+import com.example.demo.view.LoseLevelMenu;
 import com.example.demo.view.PauseButton;
 import com.example.demo.view.PlayButton;
 import com.example.demo.view.PauseMenu;
@@ -40,6 +41,7 @@ public abstract class LevelParent extends Observable {
 	private final PlayButton playButton;
 	private final PauseMenu pauseMenu;
 	private final Main main = new Main();
+	private static String currentLevelName = "com.example.demo.Levels.LevelOne";
 
 	private final List<ActiveActorDestructible> friendlyUnits;
 	private final List<ActiveActorDestructible> enemyUnits;
@@ -51,6 +53,7 @@ public abstract class LevelParent extends Observable {
 	private LevelView levelView;
 	private BackgroundMusic backgroundMusic;
 	public static boolean isMute = false;
+	private LoseLevelMenu loseLevelMenu;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
 		this.root = new Group();
@@ -72,6 +75,7 @@ public abstract class LevelParent extends Observable {
 		this.playButton = new PlayButton(this::resumeGame);
 		this.isPaused = false;
 		pauseMenu = new PauseMenu(this);
+		loseLevelMenu = new LoseLevelMenu(this);
 		initializeTimeline();
 		friendlyUnits.add(user);
 	}
@@ -109,7 +113,7 @@ public abstract class LevelParent extends Observable {
 		initializeBackground();
 		initializeFriendlyUnits();
 		levelView.showHeartDisplay();
-		root.getChildren().addAll(pauseButton, playButton, pauseMenu);
+		root.getChildren().addAll(pauseButton, playButton, pauseMenu, loseLevelMenu);
 		return scene;
 	}
 
@@ -119,6 +123,7 @@ public abstract class LevelParent extends Observable {
 	}
 
 	public void goToNextLevel(String levelName) {
+		currentLevelName = levelName;
 		hidePausePlayButton();
 		timeline.stop();
 		setChanged();
@@ -287,6 +292,8 @@ public abstract class LevelParent extends Observable {
 		hidePausePlayButton();
 		timeline.stop();
 		levelView.showGameOverImage();
+		loseLevelMenu.setVisible(true);
+		loseLevelMenu.toFront();
 	}
 
 	protected UserPlane getUser() {
@@ -357,6 +364,10 @@ public abstract class LevelParent extends Observable {
 			alert.setContentText(e.getClass().toString());
 			alert.show();
 		}
+	}
+
+	public void replayLevel() {
+		goToNextLevel(currentLevelName);
 	}
 
 }
