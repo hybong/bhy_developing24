@@ -119,6 +119,7 @@ public abstract class LevelParent extends Observable {
 		initializeFriendlyUnits();
 		levelView.showHeartDisplay();
 		root.getChildren().addAll(pauseButton, playButton, pauseMenu, loseLevelMenu);
+		pauseButton.toFront();
 		return scene;
 	}
 
