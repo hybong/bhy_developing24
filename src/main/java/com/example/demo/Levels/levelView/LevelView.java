@@ -41,4 +41,8 @@ public class LevelView {
 		}
 	}
 
+	public void hideHearts() {
+		heartDisplay.hideHearts();
+	}
+
 }

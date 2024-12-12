@@ -124,7 +124,6 @@ public abstract class LevelParent extends Observable {
 
 	public void goToNextLevel(String levelName) {
 		currentLevelName = levelName;
-		hidePausePlayButton();
 		timeline.stop();
 		setChanged();
 		backgroundMusic.stopMusic();
@@ -133,7 +132,7 @@ public abstract class LevelParent extends Observable {
 
 	public void checkToNextLevel(String levelName) {
 		timeline.stop();
-		removeAllActors();
+		removeActorsNonActors();
 		nextLevelName = levelName;
 		winLevelMenu = new WinLevelMenu(this);
 		root.getChildren().add(winLevelMenu);
@@ -312,16 +311,14 @@ public abstract class LevelParent extends Observable {
 	}
 
 	protected void winGame() {
-		hidePausePlayButton();
+		removeActorsNonActors();
 		timeline.stop();
-		removeAllActors();
 		levelView.showWinImage();
 	}
 
 	protected void loseGame() {
-		hidePausePlayButton();
+		removeActorsNonActors();
 		timeline.stop();
-		removeAllActors();
 		levelView.showGameOverImage();
 		loseLevelMenu.setVisible(true);
 		loseLevelMenu.toFront();
@@ -399,6 +396,12 @@ public abstract class LevelParent extends Observable {
 
 	public void replayLevel() {
 		goToNextLevel(currentLevelName);
+	}
+
+	private void removeActorsNonActors() {
+		levelView.hideHearts();
+		hidePausePlayButton();
+		removeAllActors();
 	}
 
 }

@@ -47,4 +47,8 @@ public class HeartDisplay {
 		return container;
 	}
 
+	public void hideHearts() {
+		container.setVisible(false);
+	}
+
 }
