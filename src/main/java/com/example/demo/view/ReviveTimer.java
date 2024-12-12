@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
-public class Timer extends StackPane {
+public class ReviveTimer extends StackPane {
 
     private int timeRemaining; // The time left in the countdown
     private Timeline countdownTimeline; // The Timeline to manage the countdown
@@ -17,7 +17,7 @@ public class Timer extends StackPane {
     private boolean timeFinished;
 
     // Constructor for the Timer class
-    public Timer(int startTime) {
+    public ReviveTimer(int startTime) {
         this.timeRemaining = startTime; // Set the starting time
         this.timerLabel = new Label("Time to Revive: " + timeRemaining); // Initialize the label
         timerLabel.setStyle("-fx-font-size: 30; -fx-text-fill: black; -fx-font-weight: bold;");

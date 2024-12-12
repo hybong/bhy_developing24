@@ -5,7 +5,7 @@ import com.example.demo.Levels.levelView.LevelViewLevelFour;
 import com.example.demo.media.BackgroundMusic;
 import com.example.demo.models.Boss;
 import com.example.demo.models.secondBoss;
-import com.example.demo.view.Timer;
+import com.example.demo.view.ReviveTimer;
 import javafx.scene.Scene;
 
 public class LevelFour extends LevelParent {
@@ -20,7 +20,7 @@ public class LevelFour extends LevelParent {
     private BackgroundMusic backgroundMusic;
     public static final int FRAMES_TO_REVIVE = 10;
     private static int BOSS_DEAD_FRAME;
-    private Timer timer;
+    private ReviveTimer timer;
 
     public LevelFour(double screenHeight, double screenWidth) {
         super(BACKGROUND_IMAGE_NAME, screenHeight, screenWidth, PLAYER_INITIAL_HEALTH);
