@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.example.demo.controller.Main;
 import com.example.demo.controller.inGameController.*;
 import com.example.demo.media.BackgroundMusic;
+import com.example.demo.media.SoundEffect;
 import com.example.demo.models.ActiveActorDestructible;
 import com.example.demo.models.FighterPlane;
 import com.example.demo.Levels.levelView.LevelView;
@@ -40,6 +41,7 @@ public abstract class LevelParent extends Observable {
 	private final Main main = new Main();
 	private static String currentLevelName = "com.example.demo.Levels.LevelOne";
 	public static String nextLevelName = "com.example.demo.Levels.LevelTwo";
+	private final String WINNING_SONG = "/com/example/demo/media/soundEffects/winningSong.mp3";
 
 	private final List<ActiveActorDestructible> friendlyUnits;
 	private final List<ActiveActorDestructible> enemyUnits;
@@ -54,6 +56,8 @@ public abstract class LevelParent extends Observable {
 	private LoseLevelMenu loseLevelMenu;
 	private WinLevelMenu winLevelMenu;
 	private WinGameMenu winGameMenu;
+	private SoundEffect winningSong;
+	private final double WINNING_SONG_VOLUME = 1;
 
 	public LevelParent(String backgroundImageName, double screenHeight, double screenWidth, int playerInitialHealth) {
 		this.root = new Group();
@@ -315,6 +319,10 @@ public abstract class LevelParent extends Observable {
 		removeActorsNonActors();
 		timeline.stop();
 		levelView.showWinImage();
+		backgroundMusic.stopMusic();
+		winningSong = new SoundEffect(WINNING_SONG);
+		winningSong.playSoundEffect(WINNING_SONG_VOLUME);
+
 		winGameMenu = new WinGameMenu(this);
 		root.getChildren().add(winGameMenu);
 		winGameMenu.setVisible(true);
