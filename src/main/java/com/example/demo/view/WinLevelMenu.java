@@ -3,6 +3,8 @@ package com.example.demo.view;
 import com.example.demo.Levels.LevelParent;
 import com.example.demo.controller.Main;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
@@ -14,7 +16,9 @@ public class WinLevelMenu extends StackPane {
 
     private LevelParent levelParent;
     private final double MENU_WIDTH = 550;
-    private final double MENU_HEIGHT = 150;
+    private final double MENU_HEIGHT = 300;
+    private final double XPosition = (double) Main.SCREEN_WIDTH /2 - MENU_WIDTH /2;
+    private final double YPosition = (double) Main.SCREEN_HEIGHT * 0.25;
 
     // Constructor
     public WinLevelMenu(LevelParent levelParent) {
@@ -26,15 +30,26 @@ public class WinLevelMenu extends StackPane {
         Button backtoMainButton = createBackToMainButton();
 
         // Create VBox for the layout
-        HBox menuLayout = new HBox(15);
-        menuLayout.getChildren().addAll(nextButton, backtoMainButton);
+        HBox buttonLayout = new HBox(15);
+        buttonLayout.getChildren().addAll(backtoMainButton, nextButton);
+        buttonLayout.setAlignment(javafx.geometry.Pos.CENTER);
+
+        Label label1 = new Label("All enemies defeated!");
+        label1.setFont(Font.font("Arial", 40));
+        label1.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
+        Label label2 = new Label("Proceed to next level?");
+        label2.setFont(Font.font("Arial", 30));
+        label2.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
+
+        VBox menuLayout = new VBox(30);
+        menuLayout.getChildren().addAll(label1, label2, buttonLayout);
         menuLayout.setAlignment(javafx.geometry.Pos.CENTER);
 
         // Set the background and size for the Pause Menu
         this.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");
         this.setPrefSize(MENU_WIDTH, MENU_HEIGHT);
-        this.setLayoutX((double) Main.SCREEN_WIDTH /2 - MENU_WIDTH /2);
-        this.setLayoutY((double) Main.SCREEN_HEIGHT * 0.6);
+        this.setLayoutX(XPosition);
+        this.setLayoutY(YPosition);
 
         // Add the HBox to the StackPane
         this.getChildren().add(menuLayout);
