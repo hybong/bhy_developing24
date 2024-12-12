@@ -24,6 +24,7 @@ public class BossHealth extends StackPane {
 
     public void updateHealth(int presentHealth) {
         double healthPercentage = (double) presentHealth / Health; // Assuming HEALTH is a constant in Boss
+        if (presentHealth == 0) hideHealth();
         healthBar.setProgress(healthPercentage);
         healthLabel.setText(presentHealth + "/" + Health);
     }

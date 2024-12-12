@@ -37,10 +37,11 @@ public class LevelFour extends LevelParent {
     @Override
     protected void checkIfGameOver() {
         if (userIsDestroyed()) {
+            removeNotActors();
             loseGame();
         }
         else if (bossOne.isDestroyed() && bossTwo.isDestroyed()) {
-            timer.hideTimer();
+            removeNotActors();
             winGame();
         }
     }
@@ -108,6 +109,14 @@ public class LevelFour extends LevelParent {
                 timer.reset(FRAMES_TO_REVIVE);
             }
         }
+    }
+
+    private void removeNotActors() {
+        levelView.hideShieldOne();
+        levelView.hideShieldTwo();
+        levelView.hideHealthOne();
+        levelView.hideHealthTwo();
+        timer.hideTimer();
     }
 
 }

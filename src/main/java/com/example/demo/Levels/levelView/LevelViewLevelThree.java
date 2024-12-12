@@ -49,4 +49,8 @@ public class LevelViewLevelThree extends LevelView {
         root.getChildren().add(bossHealth);
     }
 
+    public void hideBossHealth() {
+        bossHealth.hideHealth();
+    }
+
 }

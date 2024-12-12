@@ -29,9 +29,11 @@ public class LevelTwo extends LevelParent {
 	@Override
 	protected void checkIfGameOver() {
 		if (userIsDestroyed()) {
+			removeNotActors();
 			loseGame();
 		}
 		else if (boss.isDestroyed()) {
+			removeNotActors();
 			checkToNextLevel(NEXT_LEVEL);
 		}
 	}
@@ -72,6 +74,11 @@ public class LevelTwo extends LevelParent {
 		levelView.updateHealthPosition(boss);
 		levelView.updateBossHealth(boss.getHealth());
 
+	}
+
+	private void removeNotActors() {
+		levelView.hideShield();
+		levelView.hideBossHealth();
 	}
 
 }

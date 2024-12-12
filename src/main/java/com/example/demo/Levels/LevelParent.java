@@ -133,6 +133,7 @@ public abstract class LevelParent extends Observable {
 
 	public void checkToNextLevel(String levelName) {
 		timeline.stop();
+		removeAllActors();
 		nextLevelName = levelName;
 		winLevelMenu = new WinLevelMenu(this);
 		root.getChildren().add(winLevelMenu);
@@ -240,6 +241,25 @@ public abstract class LevelParent extends Observable {
 		actors.removeAll(destroyedActors);
 	}
 
+	private void removeAllActors() {
+		removeActors(friendlyUnits);
+		removeActors(enemyUnits);
+		removeActors(userProjectiles);
+		removeActors(enemyProjectiles);
+	}
+
+	private void removeActors(List<ActiveActorDestructible> actors) {
+		// Filter the actors based on the provided condition
+		List<ActiveActorDestructible> actorsToRemove = actors.stream().collect(Collectors.toList());
+
+		// Remove those actors from the UI (root.getChildren())
+		root.getChildren().removeAll(actorsToRemove);
+
+		// Remove those actors from the original list
+		actors.removeAll(actorsToRemove);
+	}
+
+
 	private void handlePlaneCollisions() {
 		handleCollisions(friendlyUnits, enemyUnits);
 	}
@@ -294,12 +314,14 @@ public abstract class LevelParent extends Observable {
 	protected void winGame() {
 		hidePausePlayButton();
 		timeline.stop();
+		removeAllActors();
 		levelView.showWinImage();
 	}
 
 	protected void loseGame() {
 		hidePausePlayButton();
 		timeline.stop();
+		removeAllActors();
 		levelView.showGameOverImage();
 		loseLevelMenu.setVisible(true);
 		loseLevelMenu.toFront();

@@ -49,4 +49,8 @@ public class LevelViewLevelTwo extends LevelView {
 		bossHealth.updateHealth(presentHealth);
 	}
 
+	public void hideBossHealth() {
+		bossHealth.hideHealth();
+	}
+
 }
