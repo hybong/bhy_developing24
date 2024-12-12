@@ -7,6 +7,8 @@ import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.StackPane;
 
+import static com.example.demo.Levels.LevelParent.isMute;
+
 public class PauseMenu extends StackPane {
 
     private LevelParent levelParent;
@@ -29,8 +31,8 @@ public class PauseMenu extends StackPane {
         // Set the background and size for the Pause Menu
         this.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");
         this.setPrefSize(400, 300);
-        this.setLayoutX(475);
-        this.setLayoutY(400);
+        this.setLayoutX(450);
+        this.setLayoutY(225);
 
         // Add the VBox to the StackPane
         this.getChildren().add(menuLayout);
@@ -49,10 +51,10 @@ public class PauseMenu extends StackPane {
     // Method to create "Music: On/Off" button
     private Button createMusicButton() {
         Button button = new Button("Music: On");
+        if (isMute) button.setText("Music: Off");
         button.setFont(Font.font("Arial", 18));
         button.setTextFill(Color.WHITE);
         button.setStyle("-fx-background-color: #2196F3; -fx-font-weight: bold;");
-
         button.setOnAction(e -> toggleMusic(button));
         return button;
     }
