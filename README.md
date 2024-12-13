@@ -210,14 +210,24 @@ Moved them into different files for easier management.
    **Solve**: Initailly the user plane is using `VelocityMultiplier` for both horizontal and vertical movement. This was the cause of the user
    plane not working properly. I split the `VelocityMultiplie` into `HorizontalVelocityMultiplier` and `VerticalVelocityMultiplier`. This solved
    the problem where the user plane is moving diagonally.
-3. **Problem**: The projectiles and plane collisions happen at a very weird time or position. The enemy projectile hasn't even hit the user plane
+   
+2. **Problem**: The projectiles and plane collisions happen at a very weird time or position. The enemy projectile hasn't even hit the user plane
    and the user plane took damage.
 
    **Solve**: Edited the size of the pictures and found out they were super big. After adjustinf the size, there was no more problem
-4. **Problem**: Boss revival in level 4 has been a difficult obstacle.
+   
+3. **Problem**: Boss revival in level 4 has been a difficult obstacle.
    1. The revived boss image doesn't appear when the boss revives. The image only appear when the other dies.
    2. Revived boss health has lesser health than expected
    3. **SecondBoss** is still in `isInDanger()` state after revival
    
    **Solve**: Slowly tested each method to see where is the problem. After identifying them, think of ways to remove the bugs and make the revival
 successful.
+
+4. **Problem**: Sound effects have a delayed response when played. I double checked the code and mp3 files but there was no problem so I can't locate the problem.
+
+   **Solve**: After trying my Sky Battle on another computer, it seems to have no problem but only my computer has the delayed response.
+
+5. **Problem**: After the background music is switched off while playing the levels, the background music is set to On again after exiting to the main menu.
+
+   **Solve** Started to think of passing values around in the methods, but I know that it isn't plausible and may take some time and effort. Decided to use `public static boolean isMute`. Works just as I expected and I just have to import the static variable wherever I need to use it. I've known static can be shared between classes, but this is the first timw I've used it in such a way.
