@@ -17,9 +17,9 @@ public class SecondBoss extends Boss {
 
     private static final double BOSS_SHIELD_PROBABILITY = .005; // Probability of the boss activating its shield
     private static final int HEALTH_DANGER = 30; // Health threshold below which the boss enters a danger state
-    public static final int HEALTH = 50; // Maximum health of the second boss
+    public static final int HEALTH = 80; // Maximum health of the second boss
     private static final int MAX_SHIELD = 5; // Maximum number of shields the boss can activate
-    public static final double DANGER_FIRE_RATE = .1; // Increased fire rate when the boss is in danger
+    public static final double DANGER_FIRE_RATE = .15; // Increased fire rate when the boss is in danger
     private static final int DANGER_VELOCITY = 12; // Increased movement speed when the boss is in danger
     private boolean MOVE_UPDATED; // Flag to check if the movement pattern has been updated
     private boolean isInDanger; // Flag to indicate if the boss is in the danger state
