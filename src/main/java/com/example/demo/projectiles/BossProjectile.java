@@ -7,10 +7,17 @@ package com.example.demo.projectiles;
  */
 public class BossProjectile extends Projectile {
 
-	private static final String IMAGE_NAME = "fireball.png"; // Image of the boss projectile
-	private static final int IMAGE_HEIGHT = 50; // Height of the projectile image
-	private static final int HORIZONTAL_VELOCITY = -15; // Horizontal velocity of the projectile
-	private static final int INITIAL_X_POSITION = 950; // Initial X position of the projectile
+	/** The image representing the boss projectile. */
+	private static final String IMAGE_NAME = "fireball.png";
+
+	/** The height of the projectile image. */
+	private static final int IMAGE_HEIGHT = 50;
+
+	/** The horizontal velocity of the projectile, which controls its speed of movement. */
+	private static final int HORIZONTAL_VELOCITY = -15;
+
+	/** The initial X position of the projectile when it is created. */
+	private static final int INITIAL_X_POSITION = 950;
 
 	/**
 	 * Constructor for the `BossProjectile` class.

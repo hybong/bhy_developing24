@@ -14,11 +14,22 @@ import javafx.util.Duration;
  */
 public class ReviveTimer extends StackPane {
 
-    private int timeRemaining; // The time left in the countdown
-    private Timeline countdownTimeline; // The Timeline to manage the countdown
-    private Label timerLabel; // The label that will display the countdown
-    private static final int XPosition = Main.SCREEN_WIDTH /2 - 100;
+    /** The time remaining in the countdown timer, in seconds. */
+    private int timeRemaining;
+
+    /** The Timeline object that controls the countdown animation. */
+    private Timeline countdownTimeline;
+
+    /** The label displaying the remaining time in the countdown. */
+    private Label timerLabel;
+
+    /** The X position of the timer label on the screen. */
+    private static final int XPosition = Main.SCREEN_WIDTH / 2 - 100;
+
+    /** The Y position of the timer label on the screen. */
     private static final int YPosition = 10;
+
+    /** A flag indicating whether the countdown timer has finished. */
     private boolean timeFinished;
 
     /**

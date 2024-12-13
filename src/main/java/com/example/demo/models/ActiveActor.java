@@ -9,7 +9,13 @@ import javafx.scene.image.*;
  */
 public abstract class ActiveActor extends ImageView {
 
-	private static final String IMAGE_LOCATION = "/com/example/demo/images/";  // The folder location where images are stored
+	/**
+	 * The folder location where images are stored.
+	 * This constant defines the base directory for loading all image files used in the game.
+	 * It is prepended to the relative paths of individual images to form the full resource path.
+	 * Images are expected to be located under this directory within the project's resources.
+	 */
+	private static final String IMAGE_LOCATION = "/com/example/demo/images/";
 
 	/**
 	 * Constructor to create an active actor with an image, initial position, and size.

@@ -10,8 +10,12 @@ import javafx.scene.image.ImageView;
  */
 public class ShieldImage extends ImageView {
 
+	/** The path to the image file representing the shield. */
 	private static final String SHIELD_NAME = "/com/example/demo/images/shield.png";
+
+	/** The size (width and height) of the shield image. */
 	private static final int SHIELD_SIZE = 100;
+
 
 	/**
 	 * Constructor for the ShieldImage class.

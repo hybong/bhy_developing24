@@ -7,7 +7,12 @@ package com.example.demo.models;
  */
 public abstract class ActiveActorDestructible extends ActiveActor implements Destructible {
 
-	private boolean isDestroyed;  // Flag indicating whether the actor is destroyed
+	/**
+	 * Flag indicating whether the actor is destroyed.
+	 * This boolean value is used to track the state of the actor (e.g., a fighter plane, boss, etc.).
+	 * When set to `true`, it means the actor has been destroyed and should no longer be active in the game.
+	 */
+	private boolean isDestroyed;
 
 	/**
 	 * Constructor to create a destructible actor with an image, initial position, and size.

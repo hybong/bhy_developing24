@@ -13,39 +13,169 @@ import java.util.*;
  */
 public class Boss extends FighterPlane {
 
+	/**
+	 * Path to the image file used for the boss.
+	 */
 	private static final String BOSS_IMAGE = "bossplane.png";
+
+	/**
+	 * Path to the sound file played when the boss fires a projectile.
+	 */
 	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/bossShooting.mp3";
+
+	/**
+	 * Path to the sound file played when the boss activates its shield.
+	 */
 	private static final String SHIELD_ON_SOUND = "/com/example/demo/media/soundEffects/bossShield.mp3";
+
+	/**
+	 * Path to the sound file played when the boss deactivates its shield.
+	 */
 	private static final String SHIELD_OFF_SOUND = "/com/example/demo/media/soundEffects/bossShieldDown.mp3";
+
+	/**
+	 * Path to the sound file played when the boss revives.
+	 */
 	private static final String REVIVE_SOUND = "/com/example/demo/media/soundEffects/bossRevive.mp3";
 
+	/**
+	 * The height of the boss image in pixels.
+	 */
 	private static final int IMAGE_HEIGHT = 80;
+
+	/**
+	 * The initial horizontal position of the boss on the screen (calculated based on screen width).
+	 */
 	private static final double INITIAL_X_POSITION = Main.SCREEN_WIDTH - 5 * IMAGE_HEIGHT;
+
+	/**
+	 * The initial vertical position of the boss on the screen (calculated based on screen height).
+	 */
 	private static final double INITIAL_Y_POSITION = (double) Main.SCREEN_HEIGHT / 2 - (double) IMAGE_HEIGHT / 2;
+
+	/**
+	 * The vertical offset for the projectiles fired by the boss.
+	 */
 	private static final double PROJECTILE_Y_POSITION_OFFSET = 50.0;
+
+	/**
+	 * The fire rate of the boss in terms of probability (used when determining if the boss fires in a given frame).
+	 */
 	protected double BOSS_FIRE_RATE = .04;
+
+	/**
+	 * The probability of the boss activating its shield.
+	 */
 	private static final double BOSS_SHIELD_PROBABILITY = .002;
+
+	/**
+	 * The vertical velocity of the boss. Controls how fast it moves up or down.
+	 */
 	protected static int VERTICAL_VELOCITY = 8;
+
+	/**
+	 * The starting health value for the boss.
+	 */
 	public static final int HEALTH = 50;
+
+	/**
+	 * The number of movements in a single cycle for the boss's movement pattern.
+	 */
 	protected static int MOVE_FREQUENCY_PER_CYCLE = 5;
+
+	/**
+	 * Constant used to indicate a zero value (often for movement or shield state).
+	 */
 	private static final int ZERO = 0;
+
+	/**
+	 * Maximum number of frames in which the boss can perform the same movement direction.
+	 */
 	protected static int MAX_FRAMES_WITH_SAME_MOVE = 10;
+
+	/**
+	 * The upper bound for the boss's vertical position (used to prevent moving out of bounds).
+	 */
 	private static final int Y_POSITION_UPPER_BOUND = 10;
+
+	/**
+	 * The lower bound for the boss's vertical position (used to prevent moving out of bounds).
+	 */
 	private static final int Y_POSITION_LOWER_BOUND = Main.SCREEN_HEIGHT - IMAGE_HEIGHT - 60;
+
+	/**
+	 * Maximum number of frames the boss can have its shield active.
+	 */
 	private static final int MAX_FRAMES_WITH_SHIELD = 200;
+
+	/**
+	 * List of integers representing the boss's movement pattern.
+	 */
 	protected List<Integer> movePattern;
+
+	/**
+	 * Flag indicating whether the boss is currently shielded.
+	 */
 	private boolean isShielded;
+
+	/**
+	 * Tracks how many consecutive moves the boss has made in the same direction.
+	 */
 	protected int consecutiveMovesInSameDirection;
+
+	/**
+	 * The current index of the move pattern being executed.
+	 */
 	protected int indexOfCurrentMove;
+
+	/**
+	 * The number of frames the boss has had its shield activated.
+	 */
 	private int framesWithShieldActivated;
+
+	/**
+	 * The number of times the boss has used its shield (used to track shield usage).
+	 */
 	public int ShieldCount = 0;
+
+	/**
+	 * Sound effect used when the boss fires a projectile.
+	 */
 	private final SoundEffect shootingSound;
+
+	/**
+	 * Volume level for the boss's shooting sound effect.
+	 */
 	private final double SHOOTING_SOUND_VOLUME = 0.3;
+
+	/**
+	 * Sound effect used when the boss activates its shield.
+	 */
 	private final SoundEffect shieldOnSound;
+
+	/**
+	 * Volume level for the boss's shield-on sound effect.
+	 */
 	private final double SHIELD_ON_VOLUME = 1;
+
+	/**
+	 * Sound effect used when the boss deactivates its shield.
+	 */
 	private final SoundEffect shieldOffSound;
+
+	/**
+	 * Volume level for the boss's shield-off sound effect.
+	 */
 	private final double SHIELD_OFF_VOLUME = 1;
+
+	/**
+	 * Sound effect used when the boss revives.
+	 */
 	private final SoundEffect reviveSound;
+
+	/**
+	 * Volume level for the boss's revive sound effect.
+	 */
 	private final double REVIVE_SOUND_VOLUME = 1;
 
 	/**

@@ -11,9 +11,16 @@ import javafx.scene.image.ImageView;
  */
 public class WinImage extends ImageView {
 
+	/** The path to the image file for the "You Win" screen. */
 	private static final String IMAGE_NAME = "/com/example/demo/images/youwin.png";
+
+	/** The width of the "You Win" image. */
 	private static final double WIDTH = 300;
+
+	/** The X position of the "You Win" image, centered horizontally on the screen. */
 	private static final double XPosition = (double) Main.SCREEN_WIDTH / 2 - WIDTH / 2;
+
+	/** The Y position of the "You Win" image, positioned at 20% of the screen height from the top. */
 	private static final double YPosition = (double) Main.SCREEN_HEIGHT * 0.2;
 
 	/**

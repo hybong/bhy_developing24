@@ -14,11 +14,22 @@ import javafx.scene.Group;
  */
 public class LevelViewLevelFour extends LevelView {
 
+    /** The root group in the scene, containing all UI elements for the game. */
     private final Group root;
+
+    /** The first shield image for the boss, indicating shield status. */
     private final ShieldImage shieldImageOne;
+
+    /** The second shield image for the boss, indicating shield status. */
     private final ShieldImage shieldImageTwo;
+
+    /** The health display for the first boss, showing its remaining health. */
     private final BossHealth bossOneHealth;
+
+    /** The health display for the second boss, showing its remaining health. */
     private final BossHealth bossTwoHealth;
+
+    /** The timer for the boss's revive countdown, tracking time left for revival. */
     private final ReviveTimer timer;
 
     /**

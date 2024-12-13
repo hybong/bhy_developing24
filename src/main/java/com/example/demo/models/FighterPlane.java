@@ -8,10 +8,30 @@ import com.example.demo.media.SoundEffect;
  */
 public abstract class FighterPlane extends ActiveActorDestructible {
 
-	public int health; // Health of the fighter plane
-	private static final String DESTROY_SOUND_PATH = "/com/example/demo/media/soundEffects/destroyed/fighterPlaneDestroy.mp3"; // Path to the destroy sound effect
-	private final SoundEffect destroySound; // Sound effect played when the plane is destroyed
-	private final double DESTROY_SOUND_VOLUME = 0.5; // Volume for the destroy sound effect
+	/**
+	 * The current health of the fighter plane.
+	 * This value is decremented as the plane takes damage. When health reaches 0, the plane is destroyed.
+	 */
+	public int health;
+
+	/**
+	 * The path to the sound effect that is played when the fighter plane is destroyed.
+	 * This sound effect is triggered when the plane's health reaches 0 and the plane is removed from the game.
+	 */
+	private static final String DESTROY_SOUND_PATH = "/com/example/demo/media/soundEffects/destroyed/fighterPlaneDestroy.mp3";
+
+	/**
+	 * The `SoundEffect` object that is used to play the destruction sound when the fighter plane is destroyed.
+	 * The sound is triggered upon the plane's destruction, providing an audio cue to the player.
+	 */
+	private final SoundEffect destroySound;
+
+	/**
+	 * The volume level for the destroy sound effect.
+	 * This controls how loud the destruction sound will be when the fighter plane is destroyed.
+	 * A volume of 0.5 means the sound will play at half the maximum volume.
+	 */
+	private final double DESTROY_SOUND_VOLUME = 0.5;
 
 	/**
 	 * Constructor for the `FighterPlane` class.

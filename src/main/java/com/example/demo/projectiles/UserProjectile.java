@@ -6,10 +6,14 @@ package com.example.demo.projectiles;
  */
 public class UserProjectile extends Projectile {
 
-	// Constants for the user projectile
-	private static final String IMAGE_NAME = "userfire.png"; // The image used to represent the user projectile
-	private static final int IMAGE_HEIGHT = 15; // The height of the projectile image
-	private static final int HORIZONTAL_VELOCITY = 30; // The speed at which the projectile moves horizontally
+	/** The image used to represent the user projectile. */
+	private static final String IMAGE_NAME = "userfire.png";
+
+	/** The height of the user projectile image. */
+	private static final int IMAGE_HEIGHT = 15;
+
+	/** The horizontal speed at which the user projectile moves. */
+	private static final int HORIZONTAL_VELOCITY = 30;
 
 	/**
 	 * Constructor for the `UserProjectile` class.

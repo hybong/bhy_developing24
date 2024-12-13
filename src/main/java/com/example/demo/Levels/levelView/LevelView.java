@@ -11,11 +11,40 @@ import javafx.scene.Group;
  */
 public class LevelView {
 
+	/**
+	 * The X position for displaying the heart display in the game.
+	 * This value represents the horizontal position on the screen where the hearts will be displayed.
+	 */
 	private static final double HEART_DISPLAY_X_POSITION = 5;
+
+	/**
+	 * The Y position for displaying the heart display in the game.
+	 * This value represents the vertical position on the screen where the hearts will be displayed.
+	 */
 	private static final double HEART_DISPLAY_Y_POSITION = 25;
+
+	/**
+	 * The root group in the scene, which holds all visual elements for the game UI.
+	 * It is the main container for all graphical components on the screen.
+	 */
 	private final Group root;
+
+	/**
+	 * The `WinImage` object representing the "You Win" image that is shown when the player wins the game.
+	 * This image is displayed on the screen upon game completion.
+	 */
 	private final WinImage winImage;
+
+	/**
+	 * The `GameOverImage` object representing the "Game Over" image that is shown when the player loses the game.
+	 * This image is displayed on the screen when the player's game is over.
+	 */
 	private final GameOverImage gameOverImage;
+
+	/**
+	 * The `HeartDisplay` object responsible for displaying the hearts on the screen,
+	 * which represent the player's remaining lives or health.
+	 */
 	private final HeartDisplay heartDisplay;
 
 	/**

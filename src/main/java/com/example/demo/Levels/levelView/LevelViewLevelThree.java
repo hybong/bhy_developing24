@@ -11,8 +11,13 @@ import javafx.scene.Group;
  */
 public class LevelViewLevelThree extends LevelView {
 
+    /** The root group in the scene, which contains all the UI elements for the game. */
     private final Group root;
+
+    /** The shield image display for the boss, indicating if the boss has an active shield. */
     private final ShieldImage shieldImage;
+
+    /** The health display for the boss, showing the current health of the boss. */
     private final BossHealth bossHealth;
 
     /**

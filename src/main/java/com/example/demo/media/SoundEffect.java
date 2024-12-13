@@ -8,7 +8,11 @@ import javafx.scene.media.AudioClip;
  */
 public class SoundEffect {
 
-    private final AudioClip soundEffect;  // The AudioClip for sound effects
+    /**
+     * The `soundEffect` is an `AudioClip` used to play sound effects in the game.
+     * It represents the audio file associated with a specific action, such as shooting, explosions, etc.
+     */
+    private final AudioClip soundEffect;
 
     /**
      * Constructor to initialize a sound effect with a specific file.

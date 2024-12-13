@@ -11,18 +11,70 @@ import java.util.Collections;
  */
 public class SecondBoss extends Boss {
 
-    private static final String REVIVE_SOUND = "/com/example/demo/media/soundEffects/bossRevive.mp3"; // Path to the revive sound effect
-    private final SoundEffect reviveSound; // Sound effect played when the boss is revived
-    private final double REVIVE_SOUND_VOLUME = 1; // Volume for the revive sound effect
+    /**
+     * Path to the revive sound effect that is played when the boss is revived.
+     * This sound effect plays whenever the boss regenerates its health or respawns.
+     */
+    private static final String REVIVE_SOUND = "/com/example/demo/media/soundEffects/bossRevive.mp3";
 
-    private static final double BOSS_SHIELD_PROBABILITY = .005; // Probability of the boss activating its shield
-    private static final int HEALTH_DANGER = 30; // Health threshold below which the boss enters a danger state
-    public static final int HEALTH = 80; // Maximum health of the second boss
-    private static final int MAX_SHIELD = 5; // Maximum number of shields the boss can activate
-    public static final double DANGER_FIRE_RATE = .15; // Increased fire rate when the boss is in danger
-    private static final int DANGER_VELOCITY = 12; // Increased movement speed when the boss is in danger
-    private boolean MOVE_UPDATED; // Flag to check if the movement pattern has been updated
-    private boolean isInDanger; // Flag to indicate if the boss is in the danger state
+    /**
+     * The sound effect that is played when the boss is revived.
+     * This sound is triggered when the boss regains health or returns after being defeated.
+     */
+    private final SoundEffect reviveSound;
+
+    /**
+     * The volume level for the revive sound effect. This controls how loud the revive sound is when the boss is revived.
+     */
+    private final double REVIVE_SOUND_VOLUME = 1;
+
+    /**
+     * Probability of the boss activating its shield during the game.
+     * This value determines the chance that the boss will use its shield to block incoming projectiles.
+     */
+    private static final double BOSS_SHIELD_PROBABILITY = .005;
+
+    /**
+     * The health threshold below which the boss enters a "danger" state.
+     * When the boss's health is lower than this value, it will become more aggressive and change its behavior.
+     */
+    private static final int HEALTH_DANGER = 30;
+
+    /**
+     * The maximum health of the second boss.
+     * This value represents the total health the boss starts with.
+     */
+    public static final int HEALTH = 80;
+
+    /**
+     * The maximum number of shields the boss can activate during the game.
+     * The boss can only shield itself a limited number of times before it must recharge or use other defensive strategies.
+     */
+    private static final int MAX_SHIELD = 5;
+
+    /**
+     * The increased fire rate when the boss is in the danger state.
+     * The boss fires projectiles more frequently when its health drops below the danger threshold.
+     */
+    public static final double DANGER_FIRE_RATE = .15;
+
+    /**
+     * The increased movement speed when the boss is in the danger state.
+     * The boss moves faster when its health is below the danger threshold, making it more difficult for the player to avoid.
+     */
+    private static final int DANGER_VELOCITY = 12;
+
+    /**
+     * Flag to check if the boss's movement pattern has been updated.
+     * This flag helps track whether the boss's behavior should change, for example, when switching between movement patterns.
+     */
+    private boolean MOVE_UPDATED;
+
+    /**
+     * Flag to indicate if the boss is currently in the "danger" state.
+     * The boss enters this state when its health drops below a certain threshold and becomes more aggressive.
+     */
+    private boolean isInDanger;
 
     /**
      * Constructor for the `SecondBoss` class.

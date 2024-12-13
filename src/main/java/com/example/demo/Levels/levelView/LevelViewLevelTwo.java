@@ -11,8 +11,13 @@ import javafx.scene.Group;
  */
 public class LevelViewLevelTwo extends LevelView {
 
+	/** The root group that contains all the UI elements and game components. */
 	private final Group root;
+
+	/** The image representing the shield of the boss, which is displayed when the boss has a shield. */
 	private final ShieldImage shieldImage;
+
+	/** The health display for the boss, showing the current health of the boss. */
 	private final BossHealth bossHealth;
 
 	/**

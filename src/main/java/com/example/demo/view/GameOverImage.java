@@ -11,9 +11,16 @@ import javafx.scene.image.ImageView;
  */
 public class GameOverImage extends ImageView {
 
+	/** The width of the "Game Over" image. */
 	private static final double WIDTH = 300;
+
+	/** The X position of the "Game Over" image, centered horizontally on the screen. */
 	private static final double XPosition = (double) Main.SCREEN_WIDTH / 2 - WIDTH / 2;
+
+	/** The Y position of the "Game Over" image, positioned at 20% of the screen height from the top. */
 	private static final double YPosition = (double) Main.SCREEN_HEIGHT * 0.2;
+
+	/** The path to the image file for the "Game Over" screen. */
 	private static final String GAME_OVER_IMAGE = "/com/example/demo/images/gameover.png";
 
 	/**

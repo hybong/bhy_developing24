@@ -9,16 +9,65 @@ import com.example.demo.projectiles.EnemyProjectile;
  */
 public class EnemyPlane extends FighterPlane {
 
-	private static final String IMAGE_NAME = "enemyplane.png"; // Image for the enemy plane
-	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/enemyPlaneShooting.mp3"; // Sound effect for shooting
-	private static final int IMAGE_HEIGHT = 50; // Height of the image
-	public static final int HORIZONTAL_VELOCITY = -6; // Horizontal movement speed
-	private static final double PROJECTILE_X_POSITION_OFFSET = -40.0; // Offset for projectile X position
-	private static final double PROJECTILE_Y_POSITION_OFFSET = 26.0; // Offset for projectile Y position
-	public static final int INITIAL_HEALTH = 1; // Initial health of the enemy plane
-	private static final double FIRE_RATE = .02; // Probability of firing a projectile each frame
-	private SoundEffect shootingSound; // Sound effect for shooting
-	private final double SHOOTING_SOUND_VOLUME = 0.2; // Volume for shooting sound effect
+	/**
+	 * The image used to represent the enemy plane.
+	 * This image is loaded from the resources to display the plane in the game.
+	 */
+	private static final String IMAGE_NAME = "enemyplane.png";
+
+	/**
+	 * The path to the sound effect that is played when the enemy plane shoots.
+	 * This sound effect is triggered every time the enemy plane fires a projectile.
+	 */
+	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/enemyPlaneShooting.mp3";
+
+	/**
+	 * The height of the image representing the enemy plane.
+	 * This value is used to set the size of the plane sprite when rendering it.
+	 */
+	private static final int IMAGE_HEIGHT = 50;
+
+	/**
+	 * The horizontal velocity (speed) at which the enemy plane moves.
+	 * This value determines how fast the enemy plane moves across the screen.
+	 */
+	public static final int HORIZONTAL_VELOCITY = -6;
+
+	/**
+	 * The X-axis offset used for positioning the projectile when the enemy plane shoots.
+	 * This value adjusts the position of the projectile relative to the plane's position.
+	 */
+	private static final double PROJECTILE_X_POSITION_OFFSET = -40.0;
+
+	/**
+	 * The Y-axis offset used for positioning the projectile when the enemy plane shoots.
+	 * This value adjusts the vertical position of the projectile relative to the plane's position.
+	 */
+	private static final double PROJECTILE_Y_POSITION_OFFSET = 26.0;
+
+	/**
+	 * The initial health of the enemy plane.
+	 * This value represents how much damage the enemy plane can take before being destroyed.
+	 */
+	public static final int INITIAL_HEALTH = 1;
+
+	/**
+	 * The probability of the enemy plane firing a projectile each frame.
+	 * This is a chance value that controls the frequency of firing. A higher value increases the likelihood of firing.
+	 */
+	private static final double FIRE_RATE = .02;
+
+	/**
+	 * The sound effect that is played when the enemy plane fires a projectile.
+	 * The `SoundEffect` class is used to handle the audio playback when the enemy shoots.
+	 */
+	private SoundEffect shootingSound;
+
+	/**
+	 * The volume level for the shooting sound effect.
+	 * This controls how loud the shooting sound effect is played when the enemy fires a projectile.
+	 */
+	private final double SHOOTING_SOUND_VOLUME = 0.2;
 
 	/**
 	 * Constructor for the `EnemyPlane` class. Initializes the image, health, and sound effect.

@@ -9,8 +9,22 @@ import javafx.scene.media.MediaPlayer;
  */
 public class BackgroundMusic {
 
-    private MediaPlayer mediaPlayer;  // The MediaPlayer to play the music
+    /**
+     * The `mediaPlayer` is used to play the background music.
+     * It provides methods for controlling playback such as play, pause, and stop.
+     */
+    private MediaPlayer mediaPlayer;
+
+    /**
+     * The `music` represents the media file for the background music that will be played.
+     * It is loaded from the given `musicFilePath`.
+     */
     private Media music;
+
+    /**
+     * The file path of the background music file, relative to the resources folder.
+     * This path is used to load the music file into the `Media` object.
+     */
     private final String musicFilePath;
 
     /**

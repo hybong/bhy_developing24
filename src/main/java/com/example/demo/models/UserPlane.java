@@ -10,24 +10,106 @@ import com.example.demo.projectiles.UserProjectile;
  */
 public class UserPlane extends FighterPlane {
 
-	private static final String IMAGE_NAME = "userplane.png"; // Image for the user plane
-	private static final int IMAGE_HEIGHT = 40; // Height of the user plane image
-	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/userShooting.mp3"; // Path to the shooting sound effect
-	private static final double Y_UPPER_BOUND = 10; // Upper vertical boundary for movement
-	private static final double Y_LOWER_BOUND = Main.SCREEN_HEIGHT - IMAGE_HEIGHT - 60; // Lower vertical boundary for movement
-	private static final double X_UPPER_BOUND = 0; // Left boundary for movement
-	private static final double X_LOWER_BOUND = Main.SCREEN_WIDTH - 550; // Right boundary for movement
-	private static final double INITIAL_X_POSITION = 5.0; // Initial X position of the user plane
-	private static final double INITIAL_Y_POSITION = 300.0; // Initial Y position of the user plane
-	private static int VERTICAL_VELOCITY = 8; // Default vertical velocity of the plane
-	private static int HORIZONTAL_VELOCITY = 8; // Default horizontal velocity of the plane
-	private static final int PROJECTILE_X_POSITION = 140; // X offset for projectile launch
-	private static final int PROJECTILE_Y_POSITION_OFFSET = 20; // Y offset for projectile launch
-	private int verticalVelocityMultiplier; // Multiplier for vertical movement
-	private int horizontalVelocityMultiplier; // Multiplier for horizontal movement
-	private int numberOfKills; // Number of kills made by the user
-	private SoundEffect shootingSound; // Sound effect for shooting
-	private final double SHOOTING_SOUND_VOLUME = 0.1; // Volume for the shooting sound effect
+	/**
+	 * Image for the user plane. This image is displayed on the screen to represent the user's plane.
+	 */
+	private static final String IMAGE_NAME = "userplane.png";
+
+	/**
+	 * Height of the user plane image in pixels.
+	 */
+	private static final int IMAGE_HEIGHT = 40;
+
+	/**
+	 * Path to the shooting sound effect that is played when the user plane fires a projectile.
+	 */
+	private static final String SHOOTING_SOUND = "/com/example/demo/media/soundEffects/firing/userShooting.mp3";
+
+	/**
+	 * The upper vertical boundary for the user plane's movement. The plane cannot move above this point.
+	 */
+	private static final double Y_UPPER_BOUND = 10;
+
+	/**
+	 * The lower vertical boundary for the user plane's movement. The plane cannot move below this point.
+	 * It is calculated based on the screen height and the image height of the plane.
+	 */
+	private static final double Y_LOWER_BOUND = Main.SCREEN_HEIGHT - IMAGE_HEIGHT - 60;
+
+	/**
+	 * The leftmost boundary for the user plane's movement. The plane cannot move further left than this point.
+	 */
+	private static final double X_UPPER_BOUND = 0;
+
+	/**
+	 * The rightmost boundary for the user plane's movement. The plane cannot move further right than this point.
+	 * It is calculated based on the screen width and the width of the plane.
+	 */
+	private static final double X_LOWER_BOUND = Main.SCREEN_WIDTH - 550;
+
+	/**
+	 * The initial horizontal position (X-coordinate) of the user plane when it is first placed on the screen.
+	 */
+	private static final double INITIAL_X_POSITION = 5.0;
+
+	/**
+	 * The initial vertical position (Y-coordinate) of the user plane when it is first placed on the screen.
+	 */
+	private static final double INITIAL_Y_POSITION = 300.0;
+
+	/**
+	 * The default vertical velocity (speed) of the user plane's movement. The plane moves at this speed vertically
+	 * unless altered by external factors.
+	 */
+	private static int VERTICAL_VELOCITY = 8;
+
+	/**
+	 * The default horizontal velocity (speed) of the user plane's movement. The plane moves at this speed horizontally
+	 * unless altered by external factors.
+	 */
+	private static int HORIZONTAL_VELOCITY = 8;
+
+	/**
+	 * The horizontal offset used when launching a projectile from the user plane.
+	 * The projectile is launched from this position relative to the user plane's current X position.
+	 */
+	private static final int PROJECTILE_X_POSITION = 140;
+
+	/**
+	 * The vertical offset used when launching a projectile from the user plane.
+	 * The projectile is launched from this position relative to the user plane's current Y position.
+	 */
+	private static final int PROJECTILE_Y_POSITION_OFFSET = 20;
+
+	/**
+	 * A multiplier for adjusting the user plane's vertical movement speed.
+	 * Used to modify the plane's movement in response to player input (e.g., for moving up or down).
+	 */
+	private int verticalVelocityMultiplier;
+
+	/**
+	 * A multiplier for adjusting the user plane's horizontal movement speed.
+	 * Used to modify the plane's movement in response to player input (e.g., for moving left or right).
+	 */
+	private int horizontalVelocityMultiplier;
+
+	/**
+	 * The number of kills the user has made so far in the game.
+	 * This counter keeps track of how many enemies the user has destroyed.
+	 */
+	private int numberOfKills;
+
+	/**
+	 * The sound effect used when the user plane shoots a projectile.
+	 * This sound is played whenever the user fires their weapon.
+	 */
+	private SoundEffect shootingSound;
+
+	/**
+	 * The volume level for the shooting sound effect.
+	 * This controls how loud the sound will play when the user plane fires.
+	 */
+	private final double SHOOTING_SOUND_VOLUME = 0.1;
 
 	/**
 	 * Constructor for the `UserPlane` class.

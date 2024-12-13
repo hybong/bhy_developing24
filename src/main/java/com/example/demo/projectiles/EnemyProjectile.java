@@ -6,9 +6,14 @@ package com.example.demo.projectiles;
  */
 public class EnemyProjectile extends Projectile {
 
-	private static final String IMAGE_NAME = "enemyFire.png"; // Image for the enemy projectile
-	private static final int IMAGE_HEIGHT = 15; // Height of the enemy projectile
-	private static final int HORIZONTAL_VELOCITY = -10; // Horizontal velocity of the enemy projectile
+	/** The image representing the enemy projectile. */
+	private static final String IMAGE_NAME = "enemyFire.png";
+
+	/** The height of the enemy projectile image. */
+	private static final int IMAGE_HEIGHT = 15;
+
+	/** The horizontal velocity of the enemy projectile, which controls its speed of movement. */
+	private static final int HORIZONTAL_VELOCITY = -10;
 
 	/**
 	 * Constructor for the `EnemyProjectile` class.

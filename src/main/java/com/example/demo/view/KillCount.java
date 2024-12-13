@@ -11,10 +11,19 @@ import javafx.scene.control.Label;
  */
 public class KillCount extends StackPane {
 
+    /** The label displaying the current kill count in the UI. */
     private final Label killLabel;
+
+    /** The number of kills required to win the game. */
     private final int killToWin;
+
+    /** The current number of kills made by the player. */
     private int kills;
-    private double xPosition = (double) Main.SCREEN_WIDTH /2 - 40;
+
+    /** The X position of the kill count label in the UI. */
+    private double xPosition = (double) Main.SCREEN_WIDTH / 2 - 40;
+
+    /** The Y position of the kill count label in the UI. */
     private final int yPosition = 10;
 
     /**

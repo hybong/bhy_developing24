@@ -9,7 +9,10 @@ import javafx.scene.Group;
  */
 public class LevelViewLevelOne extends LevelView {
 
+    /** The root group in the scene, containing all UI elements for the game. */
     private final Group root;
+
+    /** The kill count display, showing the player's progress towards the kill goal. */
     private final KillCount killCount;
 
     /**

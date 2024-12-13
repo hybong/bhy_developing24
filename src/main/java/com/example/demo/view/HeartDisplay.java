@@ -11,12 +11,25 @@ import javafx.scene.layout.HBox;
  */
 public class HeartDisplay {
 
+	/** The path to the image used for displaying hearts. */
 	private static final String HEART_IMAGE_NAME = "/com/example/demo/images/heart.png";
+
+	/** The height of the heart image displayed in the UI. */
 	private static final int HEART_HEIGHT = 50;
+
+	/** The index of the first heart item in the container, used for removal. */
 	private static final int INDEX_OF_FIRST_ITEM = 0;
+
+	/** The container (HBox) holding the heart images. */
 	private HBox container;
+
+	/** The X position of the heart container in the UI. */
 	private double containerXPosition;
+
+	/** The Y position of the heart container in the UI. */
 	private double containerYPosition;
+
+	/** The number of hearts to display in the UI. */
 	private int numberOfHeartsToDisplay;
 
 	/**

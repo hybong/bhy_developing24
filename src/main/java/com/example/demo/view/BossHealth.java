@@ -11,10 +11,19 @@ import javafx.scene.layout.StackPane;
  */
 public class BossHealth extends StackPane {
 
+    /** The ProgressBar used to visually represent the health of the boss. */
     private final ProgressBar healthBar;
+
+    /** The Label displaying the numeric health of the boss. */
     private final Label healthLabel;
+
+    /** The maximum health value of the boss, used to calculate health percentage. */
     private final int Health;
+
+    /** The height of the health bar. */
     private static final int BAR_HEIGHT = 20;
+
+    /** The width of the health bar. */
     private static final int BAR_WIDTH = 370;
 
     /**
