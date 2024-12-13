@@ -18,21 +18,49 @@ import java.lang.reflect.InvocationTargetException;
 
 import static com.example.demo.Levels.LevelParent.isMute;
 
+/**
+ * MainMenu class is responsible for displaying the main menu, handling user interaction through buttons,
+ * playing background music, and showing a background video.
+ */
 public class MainMenu {
 
-    private final Stage stage;
+    /** Path to the background video for the main menu. */
     private final String BACKGROUND_VIDEO = "/com/example/demo/video/mainMenuBackground.mp4";  // Update to video path
+
+    /** Path to the background music for the main menu. */
     private final String BACKGROUND_MUSIC = "/com/example/demo/media/backgroundMusic/MainMenuMusic.mp3";
+
+    /** Path to the sound effect for button clicks. */
     private final String BUTTON_SOUND = "/com/example/demo/media/soundEffects/click.mp3";
+
+    /** Controller instance to manage the game. */
     private Controller myController;
+
+    /** Background music handler for the main menu. */
     private BackgroundMusic backgroundMusic;
+
+    /** Button click sound effect handler. */
     private SoundEffect buttonSound;
+
+    /** Volume level for the button sound effects. */
     private final double BUTTON_SOUND_VOLUME = 1;
 
+    /** Stage for the main menu scene. */
+    private final Stage stage;
+
+    /**
+     * Constructs the MainMenu with the given stage.
+     *
+     * @param stage The stage on which the main menu will be displayed.
+     */
     public MainMenu(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * Displays the main menu including the title, buttons, background video, and background music.
+     * Handles user interactions with the buttons to start the game, toggle music, or exit.
+     */
     public void display() {
 
         backgroundMusic = new BackgroundMusic(BACKGROUND_MUSIC);
@@ -50,13 +78,13 @@ public class MainMenu {
         title.setStyle("-fx-font-weight: bold;");
 
         // Style the start button
-        if(isMute) musicButton.setText("Music: Off");
+        if(isMute) musicButton.setText("Music: Off"); // If the App is mute, change the button
         startButton.setFont(Font.font("Arial", 18)); // Set font and size for start button
         startButton.setTextFill(Color.web("#FFFFFF")); // White text color for the button
         startButton.setStyle("-fx-background-color: #4CAF50; -fx-font-weight: bold;"); // Green background and bold font
         startButton.setMinWidth(200); // Set a minimum width
         startButton.setMinHeight(50); // Set a minimum height
-        startButton.setEffect(new javafx.scene.effect.DropShadow(10, Color.BLACK)); // Optional: Add a shadow effect
+        startButton.setEffect(new javafx.scene.effect.DropShadow(10, Color.BLACK));
 
         musicButton.setFont(Font.font("Arial", 18)); // Set font and size for start button
         musicButton.setTextFill(Color.web("#FFFFFF")); // White text color for the button
@@ -71,7 +99,7 @@ public class MainMenu {
         exitButton.setStyle("-fx-background-color: #F44336; -fx-font-weight: bold;"); // Red background and bold font
         exitButton.setMinWidth(200); // Set a minimum width
         exitButton.setMinHeight(50); // Set a minimum height
-        exitButton.setEffect(new javafx.scene.effect.DropShadow(10, Color.BLACK)); // Optional: Add a shadow effect
+        exitButton.setEffect(new javafx.scene.effect.DropShadow(10, Color.BLACK));
 
         buttonSound = new SoundEffect(BUTTON_SOUND);
 
@@ -131,6 +159,15 @@ public class MainMenu {
 
     }
 
+    /**
+     * Starts the game by stopping the background music and launching the controller to start the game.
+     *
+     * @throws ClassNotFoundException If the game class is not found.
+     * @throws InvocationTargetException If an exception occurs while invoking the constructor of the level.
+     * @throws NoSuchMethodException If the required constructor for the level class is not found.
+     * @throws InstantiationException If the level class cannot be instantiated.
+     * @throws IllegalAccessException If the constructor or method cannot be accessed.
+     */
     private void startPlaying() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         backgroundMusic.stopMusic();
         myController = new Controller(stage);

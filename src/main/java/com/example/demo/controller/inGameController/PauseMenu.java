@@ -11,16 +11,36 @@ import javafx.scene.layout.StackPane;
 
 import static com.example.demo.Levels.LevelParent.isMute;
 
+/**
+ * The PauseMenu class represents the menu displayed when the game is paused.
+ * It provides options to resume the game, toggle music, or return to the main menu.
+ */
 public class PauseMenu extends StackPane {
 
+    /** The level parent that controls the current game level. */
     private LevelParent levelParent;
+
+    /** The width of the pause menu. */
     private final double MENU_WIDTH = 350;
+
+    /** The height of the pause menu. */
     private final double MENU_HEIGHT = 300;
+
+    /** The file path for the button click sound effect. */
     private final String BUTTON_SOUND = "/com/example/demo/media/soundEffects/click.mp3";
+
+    /** The sound effect for button clicks. */
     private final SoundEffect buttonSound;
+
+    /** The volume level for the button sound effects. */
     private final double BUTTON_SOUND_VOLUME = 1;
 
-    // Constructor
+    /**
+     * Constructs the PauseMenu with the given LevelParent.
+     * Initializes the layout and buttons for resuming the game, toggling music, or returning to the main menu.
+     *
+     * @param levelParent the parent level that controls the game's logic and transitions
+     */
     public PauseMenu(LevelParent levelParent) {
         this.levelParent = levelParent;
         this.setVisible(false);
@@ -39,14 +59,18 @@ public class PauseMenu extends StackPane {
         // Set the background and size for the Pause Menu
         this.setStyle("-fx-background-color: rgba(0, 0, 0, 0.7);");
         this.setPrefSize(MENU_WIDTH, MENU_HEIGHT);
-        this.setLayoutX((double) Main.SCREEN_WIDTH /2 - MENU_WIDTH /2);
-        this.setLayoutY((double) Main.SCREEN_HEIGHT /2 - MENU_HEIGHT /2);
+        this.setLayoutX((double) Main.SCREEN_WIDTH / 2 - MENU_WIDTH / 2);
+        this.setLayoutY((double) Main.SCREEN_HEIGHT / 2 - MENU_HEIGHT / 2);
 
         // Add the VBox to the StackPane
         this.getChildren().add(menuLayout);
     }
 
-    // Method to create "Resume" button
+    /**
+     * Creates and returns the "Resume" button that allows the player to resume the game.
+     *
+     * @return the "Resume" button
+     */
     private Button createResumeButton() {
         Button button = new Button("Resume");
         button.setFont(Font.font("Arial", 18));
@@ -61,7 +85,11 @@ public class PauseMenu extends StackPane {
         return button;
     }
 
-    // Method to create "Music: On/Off" button
+    /**
+     * Creates and returns the "Music: On/Off" button that allows the player to toggle the background music.
+     *
+     * @return the "Music: On/Off" button
+     */
     private Button createMusicButton() {
         Button button = new Button("Music: On");
         if (isMute) button.setText("Music: Off");
@@ -77,7 +105,11 @@ public class PauseMenu extends StackPane {
         return button;
     }
 
-    // Method to create "Back to Main Menu" button
+    /**
+     * Creates and returns the "Back to Main Menu" button that allows the player to return to the main menu.
+     *
+     * @return the "Back to Main Menu" button
+     */
     private Button createBackToMenuButton() {
         Button button = new Button("Back to Main Menu");
         button.setFont(Font.font("Arial", 18));
@@ -92,20 +124,29 @@ public class PauseMenu extends StackPane {
         return button;
     }
 
-    // Handle the Resume action
+    /**
+     * Resumes the game by calling the appropriate method from the LevelParent class.
+     * Hides the pause menu after resuming the game.
+     */
     private void resumeGame() {
         levelParent.resumeGame();
         this.setVisible(false);
     }
 
-    // Handle toggling the music on/off
+    /**
+     * Toggles the background music on or off and updates the button text accordingly.
+     *
+     * @param button the button whose text will be updated based on the music state
+     */
     private void toggleMusic(Button button) {
         levelParent.toggleBackgroundMusic();
-        if(levelParent.backgroundMusicPlaying()) button.setText("Music: Off");
+        if (levelParent.backgroundMusicPlaying()) button.setText("Music: Off");
         else button.setText("Music: On");
     }
 
-    // Go back to the main menu
+    /**
+     * Goes back to the main menu by calling the appropriate method from the LevelParent class.
+     */
     private void goToMainMenu() {
         levelParent.goToMainMenu();
     }

@@ -3,19 +3,31 @@ package com.example.demo.media;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * The `BackgroundMusic` class handles the playback of background music for different game levels.
+ * It allows playing, pausing, resuming, stopping, and adjusting the volume of music tracks.
+ */
 public class BackgroundMusic {
 
     private MediaPlayer mediaPlayer;  // The MediaPlayer to play the music
     private Media music;
     private final String musicFilePath;
 
-    // Constructor: Initialize the mediaPlayer with a default track
+    /**
+     * Constructor to initialize the `BackgroundMusic` object with a file path for the music.
+     * Initially, no music is loaded.
+     *
+     * @param musicFilePath The path to the music file to be played (relative to the resources folder).
+     */
     public BackgroundMusic(String musicFilePath) {
         mediaPlayer = null;  // Initially, no music is loaded
         this.musicFilePath = musicFilePath;
     }
 
-    // Method to play music for a specific level (track)
+    /**
+     * Starts playing the music for a specific level or track.
+     * If there is already music playing, it stops the current music and starts the new track.
+     */
     public void playMusic() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();  // Stop any music currently playing
@@ -29,33 +41,52 @@ public class BackgroundMusic {
         mediaPlayer.play(); // Start playing the music
     }
 
-    // Method to stop the music (can be used when exiting or switching levels)
+    /**
+     * Stops the music, which can be used when exiting or switching levels.
+     * Stops the current track if it's playing.
+     */
     public void stopMusic() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
     }
 
+    /**
+     * Pauses the music if it's currently playing.
+     * This can be used to pause the track without stopping it completely.
+     */
     public void pauseMusic() {
         if (mediaPlayer != null) {
             mediaPlayer.pause();
         }
     }
 
+    /**
+     * Resumes the music if it was previously paused.
+     * This method will continue the track from where it was paused.
+     */
     public void resumeMusic() {
         if (mediaPlayer != null) {
             mediaPlayer.play();
         }
     }
 
-    // Method to change the volume
+    /**
+     * Sets the volume of the music.
+     *
+     * @param volume The volume level, where 0.0 is silent and 1.0 is the maximum volume.
+     */
     public void setVolume(double volume) {
         if (mediaPlayer != null) {
             mediaPlayer.setVolume(volume);  // Set the volume (0.0 is silent, 1.0 is max)
         }
     }
 
-    // Method to check if music is playing
+    /**
+     * Checks if the music is currently playing.
+     *
+     * @return `true` if the music is playing, `false` otherwise.
+     */
     public boolean isPlaying() {
         return mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING;
     }
